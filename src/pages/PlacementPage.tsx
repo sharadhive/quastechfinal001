@@ -277,26 +277,28 @@ const PlacementPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
         <Header />
         
-        {/* 1. Hero Banner Section - Croma Campus Style */}
+        {/* 1. Hero Banner Section - Same as Hero Component */}
         <section className="relative px-4 pt-20 md:pt-22 pb-6 md:pb-8 overflow-hidden flex items-center justify-center min-h-[450px] md:min-h-[520px]">
-          {/* Hero Component Background Gradient - Same as ContactPage */}
+          {/* Hero Component Background Gradient */}
           <div className="absolute inset-0 -z-1">
-            {/* Main Gradient Background - Same as ContactPage */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a] via-[#2563eb] to-[#f97316]" />
+            {/* Clean Professional Hero Gradient - Same as Hero Component */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
             
-            {/* Static Gradient Overlays */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.5) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.5) 0%, transparent 50%)',
-              }} />
-            </div>
-
-            {/* Animated Mesh Gradient Overlay */}
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, transparent 50%), 
-                               linear-gradient(225deg, rgba(249, 115, 22, 0.4) 0%, transparent 50%),
-                               linear-gradient(45deg, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`,
-            }} />
+            {/* Subtle Overlay for Better Text Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-orange-900/20" />
+            
+            {/* Professional Mesh Overlay */}
+            <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
+            
+            {/* Subtle Grid Pattern */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+              }}
+            />
 
             {/* Animated Floating Elements */}
             <motion.div
@@ -1027,7 +1029,7 @@ const PlacementPage = () => {
               >
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-200/40 via-purple-200/40 to-orange-200/40 rounded-3xl blur-2xl" aria-hidden></div>
                 <img
-                  src="/uploads/FAQ-vector-design-concept.jpg"
+                  src="/images/FAQ[1].png"
                   alt="Frequently Asked Questions about Placements"
                   className="relative w-full h-auto rounded-3xl ring-1 ring-blue-100 shadow-xl"
                 />

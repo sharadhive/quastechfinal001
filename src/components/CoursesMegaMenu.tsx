@@ -26,48 +26,59 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       color: "from-blue-500 to-cyan-500",
       courses: [
         {
-          title: "Software Testing",
-          duration: "4-6 Months"
+          title: "Software Testing Training",
+          duration: "4-6 Months",
+          link: "/software-testing-training"
         },
         {
-          title: "Fullstack Development",
-          duration: "6-8 Months"
+          title: "Full Stack Java Development",
+          duration: "6-8 Months",
+          link: "/full-stack-java-development"
         },
         {
-          title: "Software Development",
-          duration: "6-8 Months"
+          title: "Full Stack Python Development",
+          duration: "6-8 Months",
+          link: "/full-stack-python-development"
         },
         {
-          title: "Front End Development",
-          duration: "4-6 Months"
+          title: "Full Stack Web Development",
+          duration: "6-8 Months",
+          link: "/web-development-course"
         },
         {
           title: "Data Science With Python",
-          duration: "8-10 Months"
+          duration: "8-10 Months",
+          link: "/python-data-science"
         },
         {
-          title: "BIG Data Engineering",
-          duration: "6-8 Months"
+          title: "Java Development Training",
+          duration: "4-6 Months",
+          link: "/java-training"
         },
         {
-          title: "RPA",
-          duration: "4-6 Months"
+          title: "Python Development Training",
+          duration: "4-6 Months",
+          link: "/python-training"
         },
         {
-          title: "Software Testing Course",
-          duration: "4-6 Months"
+          title: "Web Designing Training",
+          duration: "4-6 Months",
+          link: "/web-designing-training"
         },
         {
-          title: "Manual Testing",
-          duration: "3-4 Months"
+          title: "React Training",
+          duration: "3-4 Months",
+          link: "/react-course"
         },
         {
-          title: "Selenium Automation Testing",
-          duration: "4-6 Months"
+          title: "Angular Training",
+          duration: "3-4 Months",
+          link: "/angular-course"
         },
         {
-          title: "ISTQB Certification",
-          duration: "3-4 Months"
+          title: "RPA Training",
+          duration: "4-6 Months",
+          link: "/rpa"
         }
       ]
     },
@@ -78,23 +89,43 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       courses: [
         {
           title: "Digital Marketing",
-          duration: "4-6 Months"
+          duration: "4-6 Months",
+          link: "/digital-marketing"
         },
         {
-          title: "Business Analytics",
-          duration: "4-6 Months"
+          title: "Data Analysis & Visualization",
+          duration: "4-6 Months",
+          link: "/data-analysis-visualization"
         },
         {
-          title: "Project Management",
-          duration: "3-4 Months"
+          title: "Graphic Designing",
+          duration: "3-4 Months",
+          link: "/graphic-designing"
         },
         {
-          title: "Financial Analysis",
-          duration: "4-6 Months"
+          title: "Web Graphic Designing",
+          duration: "4-6 Months",
+          link: "/web-graphic-designing"
         },
         {
-          title: "Human Resources",
-          duration: "3-4 Months"
+          title: "Financial Accounting",
+          duration: "4-6 Months",
+          link: "/financial-accounting"
+        },
+        {
+          title: "Accounting",
+          duration: "3-4 Months",
+          link: "/accounting"
+        },
+        {
+          title: "Taxation",
+          duration: "3-4 Months",
+          link: "/taxation"
+        },
+        {
+          title: "Management Information Systems",
+          duration: "4-6 Months",
+          link: "/management-information-systems"
         }
       ]
     },
@@ -105,19 +136,23 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       courses: [
         {
           title: "Online Full Stack Development",
-          duration: "6-8 Months"
+          duration: "6-8 Months",
+          link: "/web-development-course"
         },
         {
           title: "Online Data Science",
-          duration: "8-10 Months"
+          duration: "8-10 Months",
+          link: "/python-data-science"
         },
         {
           title: "Online Digital Marketing",
-          duration: "4-6 Months"
+          duration: "4-6 Months",
+          link: "/digital-marketing"
         },
         {
-          title: "Online Business Analytics",
-          duration: "4-6 Months"
+          title: "Online Software Testing",
+          duration: "4-6 Months",
+          link: "/software-testing-training"
         }
       ]
     },
@@ -127,20 +162,19 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       color: "from-green-500 to-emerald-500",
       courses: [
         {
-          title: "B.Tech Computer Science",
-          duration: "4 Years"
+          title: "BCA (Bachelor of Computer Applications)",
+          duration: "3 Years",
+          link: "/bca"
         },
         {
-          title: "MCA (Master of Computer Applications)",
-          duration: "2 Years"
+          title: "Quastech Degree Program",
+          duration: "3-4 Years",
+          link: "/quastech-degree-program"
         },
         {
-          title: "BBA (Bachelor of Business Administration)",
-          duration: "3 Years"
-        },
-        {
-          title: "MBA (Master of Business Administration)",
-          duration: "2 Years"
+          title: "Information Technology Programme",
+          duration: "2-3 Years",
+          link: "/information-technology-programme"
         }
       ]
     }
@@ -175,9 +209,6 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       {/* Course Cards - Unified Grid Layout */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
         {currentData.courses.map((course, index) => {
-        const isSoftwareTesting =
-          course.title === "Software Testing" || course.title === "Software Testing Course";
-
         const cardContent = (
           <Card className="border border-gray-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg cursor-pointer h-full">
             <CardContent className="p-4">
@@ -198,6 +229,7 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
             </CardContent>
           </Card>
         );
+        
         return (
           <motion.div
             key={course.title}
@@ -206,8 +238,8 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
             transition={{ delay: index * 0.05 }}
             className="group"
           >
-            {isSoftwareTesting ? (
-              <Link to="/software-testing-training">
+            {course.link ? (
+              <Link to={course.link} onClick={onClose}>
                 {cardContent}
               </Link>
             ) : (

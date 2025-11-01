@@ -137,24 +137,26 @@ const ContactPage = () => {
           />
         </div>
 
-        {/* Hero Banner with Gradient Background */}
+        {/* Hero Banner with Gradient Background - Same as Hero Component */}
         <section className="relative h-[500px] overflow-hidden">
-          {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a] via-[#2563eb] to-[#f97316]" />
+          {/* Clean Professional Hero Gradient - Same as Hero Component */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
           
-          {/* Static Gradient Overlays */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.5) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.5) 0%, transparent 50%)',
-            }} />
-          </div>
-
-          {/* Animated Mesh Gradient Overlay */}
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, transparent 50%), 
-                             linear-gradient(225deg, rgba(249, 115, 22, 0.4) 0%, transparent 50%),
-                             linear-gradient(45deg, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`,
-          }} />
+          {/* Subtle Overlay for Better Text Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-orange-900/20" />
+          
+          {/* Professional Mesh Overlay */}
+          <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
+          
+          {/* Subtle Grid Pattern */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
 
           {/* Animated Floating Elements */}
           <motion.div

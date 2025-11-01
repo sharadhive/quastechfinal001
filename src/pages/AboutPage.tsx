@@ -154,25 +154,27 @@ const AboutPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
         <Header />
 
-        {/* Hero Banner with Gradient Background - Same as ContactPage */}
+        {/* Hero Banner with Gradient Background - Same as Hero Component */}
         <section className="relative px-4 pt-20 md:pt-24 pb-4 md:pb-6 overflow-hidden min-h-[350px] md:min-h-[420px] flex items-center">
           <div className="absolute inset-0 z-0">
-            {/* Main Gradient Background - Same as ContactPage */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a] via-[#2563eb] to-[#f97316]" />
+            {/* Clean Professional Hero Gradient - Same as Hero Component */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
             
-            {/* Static Gradient Overlays */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.5) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.5) 0%, transparent 50%)',
-              }} />
-            </div>
-
-            {/* Animated Mesh Gradient Overlay */}
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, transparent 50%), 
-                               linear-gradient(225deg, rgba(249, 115, 22, 0.4) 0%, transparent 50%),
-                               linear-gradient(45deg, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`,
-            }} />
+            {/* Subtle Overlay for Better Text Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-orange-900/20" />
+            
+            {/* Professional Mesh Overlay - Reduced Opacity */}
+            <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
+            
+            {/* Subtle Grid Pattern - Reduced Opacity */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+              }}
+            />
 
             {/* Animated Floating Elements */}
             <motion.div
@@ -190,6 +192,7 @@ const AboutPage = () => {
               }}
               className="absolute top-16 left-8 w-48 h-48 md:w-56 md:h-56 bg-gradient-to-br from-blue-500/30 to-blue-600/30 rounded-full blur-3xl"
             />
+            
             <motion.div
               initial={{ y: 0, x: 0, rotate: 0 }}
               animate={{ 
@@ -206,6 +209,7 @@ const AboutPage = () => {
               }}
               className="absolute bottom-12 right-8 w-64 h-64 md:w-72 md:h-72 bg-gradient-to-br from-orange-500/30 to-orange-600/30 rounded-full blur-3xl"
             />
+
             <motion.div
               initial={{ scale: 1, opacity: 0.3 }}
               animate={{ 
@@ -340,6 +344,7 @@ const AboutPage = () => {
                   {/* Glow Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-transparent to-blue-600/20 pointer-events-none rounded-md" />
                 </div>
+
                 {/* Floating Particles Effect */}
                 {[...Array(4)].map((_, i) => (
                   <motion.div
@@ -391,7 +396,7 @@ const AboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="heading-institute text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 text-center md:text-left">
                 About us
               </h2>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
@@ -427,188 +432,34 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Our Story Section */}
-        <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100">
-          <div className="max-w-5xl mx-auto text-center">
+        {/* Achievements Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
+          <div className="container mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
             >
-              <h2 className="heading-institute">
-                Our Story
-              </h2>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                QUASTECH was founded in 2010 with a simple yet powerful vision: to bridge the gap between academic learning and industry requirements. We recognized that traditional education often falls short in preparing students for real-world challenges in the rapidly evolving IT landscape.
-              </p>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                Over the years, we've evolved from a small training center to one of India's most trusted IT education institutes. Our journey has been marked by continuous innovation, unwavering commitment to quality, and a deep understanding of industry needs.
-              </p>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                Today, we take pride in our alumni network of over <span className="text-blue-600 font-bold">40,000+ professionals</span> working in leading companies worldwide. Their success is a testament to our dedication and the quality of education we provide. From fresh graduates to career switchers, we've been the catalyst for thousands of successful career transformations.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Our Values Section - Reorganized Layout */}
-        <section className="py-20 px-4 md:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mb-12"
-            >
-              <h2 className="heading-institute mb-4">
-                Our Values
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-600 to-orange-500 text-transparent bg-clip-text">
+                  Our Achievements
+                </span>
               </h2>
             </motion.div>
-            
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
-              {/* Left Column - Values Grid (First 3 cards) */}
-              <div className="grid grid-cols-1 gap-8">
-                {values.slice(0, 3).map((value, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    className="bg-blue-50 rounded-xl p-6 border border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0">
-                        <value.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-[#19376D] mb-3">{value.title}</h3>
-                        <p className="text-gray-700 leading-relaxed">{value.description}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Right Column - Image at Top, Cards Below */}
-              <div className="space-y-8">
-                {/* Top Image */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="relative"
-                >
-                  <div className="relative transform rotate-3 md:rotate-6 border-2 border-blue-600 rounded-lg overflow-hidden shadow-2xl p-2 bg-gradient-to-br from-blue-50 to-transparent">
-                    <img
-                      src="/assets/about_asset/images/Main_About.jpg"
-                      alt="Quastech Values"
-                      className="w-full h-auto object-cover rounded"
-                      onError={(e) => {
-                        e.currentTarget.src = "/images/branches/IMG20240104153434.jpg";
-                      }}
-                    />
-                  </div>
-                </motion.div>
-
-                {/* Remaining Value Cards Below Image (2 cards) */}
-                <div className="grid grid-cols-1 gap-8">
-                  {values.slice(3, 5).map((value, index) => (
-                    <motion.div
-                      key={index + 3}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: (index + 3) * 0.1, duration: 0.6 }}
-                      className="bg-blue-50 rounded-xl p-6 border border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0">
-                          <value.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-[#19376D] mb-3">{value.title}</h3>
-                          <p className="text-gray-700 leading-relaxed">{value.description}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us Section */}
-        <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="heading-institute mb-4">
-                Why Choose Quastech?
-              </h2>
-              <p className="section-subtitle">
-                What makes us stand out from the rest
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {whyChooseUs.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
-                >
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mb-4">
-                    <item.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#19376D] mb-3">{item.title}</h3>
-                  <p className="text-gray-700 leading-relaxed">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Achievements Grid */}
-        <section className="py-20 px-4 md:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="heading-institute mb-4">
-                Our Achievements
-              </h2>
-            </motion.div>
-
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-[#f6f8fa] rounded-xl p-6 text-center border border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all"
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-center p-6 rounded-xl bg-white border-2 border-blue-100 hover:border-blue-500 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mx-auto mb-4">
-                    <achievement.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-2xl md:text-3xl font-extrabold text-[#19376D] mb-2">{achievement.value}</div>
-                  <div className="text-sm font-bold text-gray-700 mb-1">{achievement.label}</div>
+                  <achievement.icon className="w-10 h-10 mx-auto mb-4 text-blue-600" />
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-orange-500 text-transparent bg-clip-text mb-2">{achievement.value}</div>
+                  <div className="text-sm font-medium text-gray-800 mb-1">{achievement.label}</div>
                   <div className="text-xs text-gray-600">{achievement.description}</div>
                 </motion.div>
               ))}
@@ -616,76 +467,185 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Journey Timeline */}
-        <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100">
-          <div className="max-w-6xl mx-auto">
+        {/* Mission & Vision Section */}
+        <section className="py-16 px-4 bg-white">
+          <div className="container mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 hover:border-blue-500 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 flex items-center justify-center mb-4">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">Our Mission</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  To empower individuals with industry-relevant skills and practical knowledge, enabling them to excel in the ever-evolving IT landscape. We bridge the gap between academic learning and industry requirements through hands-on training and real-world projects.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200 hover:border-orange-500 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+                  <Eye className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-orange-900">Our Vision</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  To be India's most trusted and innovative IT education provider, recognized for producing job-ready professionals who drive technological advancement. We aspire to create a future where quality IT education is accessible to all aspiring tech professionals.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Core Values Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
+          <div className="container mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-600 to-orange-500 text-transparent bg-clip-text">
+                  Our Core Values
+                </span>
+              </h2>
+              <p className="text-gray-600">The principles that guide everything we do</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-6 rounded-xl bg-white border-2 border-blue-100 hover:border-blue-500 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-600 to-orange-500 flex items-center justify-center mb-4">
+                    <value.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 px-4 bg-white">
+          <div className="container mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-600 to-orange-500 text-transparent bg-clip-text">
+                  Why Choose QUASTECH?
+                </span>
+              </h2>
+              <p className="text-gray-600">What makes us the preferred choice for IT education</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {whyChooseUs.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-orange-50 border-2 border-blue-100 hover:border-orange-500 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-orange-500 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Journey Timeline with 3D Effect - NEW DESIGN YOU LIKED */}
+        <section className="relative py-20 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+          <div className="container mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="heading-institute mb-4">
-                Our Journey
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Our <span className="bg-gradient-to-r from-blue-400 to-orange-400 text-transparent bg-clip-text">Journey</span>
               </h2>
-              <p className="section-subtitle">Key milestones that shaped our success</p>
+              <p className="text-gray-300 text-lg">Milestones in our path to excellence</p>
             </motion.div>
 
-            <div className="relative max-w-5xl mx-auto pl-4 md:pl-0">
-              {/* Vertical Timeline Line with Gentle Curve */}
-              <div className="absolute left-8 md:left-12 top-0 bottom-0 w-1">
-                <svg className="w-full h-full" viewBox="0 0 4 1200" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="journeyTimelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#60A5FA" />
-                      <stop offset="50%" stopColor="#3B82F6" />
-                      <stop offset="100%" stopColor="#60A5FA" />
-                    </linearGradient>
-                  </defs>
-                  {/* Gentle S-curve path */}
-                  <path
-                    d="M 2 0 Q 4 150 2 300 T 2 600 T 2 900 T 2 1200"
-                    stroke="url(#journeyTimelineGradient)"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-blue-600 to-orange-500 hidden md:block" />
 
-              {/* Timeline Items */}
-              <div className="space-y-12 md:space-y-16 relative">
+              <div className="space-y-12">
                 {milestones.map((milestone, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    className="relative flex items-start gap-6 md:gap-8"
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className={`flex items-center gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                   >
-                    {/* Timeline Node (Circle) */}
-                    <div className="relative z-10 flex-shrink-0">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border-4 border-blue-500 shadow-lg flex items-center justify-center">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-600 flex items-center justify-center">
-                          <milestone.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                    <div className="flex-1">
+                      <motion.div
+                        whileHover={{ scale: 1.05, rotateZ: 2 }}
+                        className="relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-blue-500/30 group hover:border-orange-500/50 transition-colors duration-300"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 rounded-xl bg-gradient-to-br from-blue-600 to-orange-500 shadow-lg shadow-blue-500/30">
+                            <milestone.icon className="w-6 h-6 text-white" />
+                          </div>
+                          
+                          <div className="flex-1">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-orange-400 text-transparent bg-clip-text mb-2">
+                              {milestone.year}
+                            </div>
+                            <h3 className="text-xl font-semibold text-white mb-2">
+                              {milestone.title}
+                            </h3>
+                            <p className="text-gray-300 leading-relaxed">
+                              {milestone.description}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      {/* Year Badge */}
-                      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded whitespace-nowrap">
-                        {milestone.year}
-                      </div>
+
+                        {/* 3D Decoration */}
+                        <div className="absolute -bottom-2 -right-2 w-full h-full bg-gradient-to-br from-blue-600/10 to-orange-500/10 rounded-2xl -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300" />
+                      </motion.div>
                     </div>
 
-                    {/* Content Card */}
-                    <div className="flex-1 bg-white rounded-xl p-6 md:p-8 border border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all mt-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-[#19376D] mb-3">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                        {milestone.description}
-                      </p>
+                    {/* Center Timeline Dot */}
+                    <div className="hidden md:block">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-orange-500 shadow-lg shadow-blue-500/50 ring-4 ring-slate-900" />
                     </div>
+
+                    <div className="flex-1 hidden md:block" />
                   </motion.div>
                 ))}
               </div>
@@ -693,150 +653,47 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Our Hiring Partners - Sliding Company Logos */}
-        <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
+        {/* Hiring Partners Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
+          <div className="container mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-8"
+              className="text-center mb-12"
             >
-              <h2 className="heading-institute-lg mb-4">Our Hiring Partners</h2>
-              <p className="section-subtitle text-center">Organizations around the globe trusting our Learners technical skills and hiring them with good payscale</p>
-            </motion.div>
-            
-            {/* First Row - Sliding from Right to Left */}
-            <div className="overflow-hidden mb-6">
-              <motion.div
-                className="flex gap-6"
-                animate={{
-                  x: ['0%', '-50%']
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    duration: 30,
-                    ease: 'linear'
-                  }
-                }}
-              >
-                {/* Duplicate the logos for seamless loop */}
-                {[...companyList.slice(0, 6), ...companyList.slice(0, 6)].map((company, i) => (
-                  <div
-                    key={`first-${i}`}
-                    className="flex-shrink-0 w-48 md:w-56 lg:w-64"
-                  >
-                    <motion.div
-                      className="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all border border-gray-100 flex items-center justify-center h-24"
-                      whileHover={{ scale: 1.05, rotateY: 5 }}
-                      style={{ transformStyle: 'preserve-3d' }}
-                    >
-                      <img src={company.logo} alt={company.name} className="max-w-full max-h-full object-contain" />
-                    </motion.div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Second Row - Sliding from Left to Right */}
-            <div className="overflow-hidden">
-              <motion.div
-                className="flex gap-6"
-                animate={{
-                  x: ['-50%', '0%']
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    duration: 30,
-                    ease: 'linear'
-                  }
-                }}
-              >
-                {/* Duplicate the logos for seamless loop */}
-                {[...companyList.slice(6, 12), ...companyList.slice(6, 12)].map((company, i) => (
-                  <div
-                    key={`second-${i}`}
-                    className="flex-shrink-0 w-48 md:w-56 lg:w-64"
-                  >
-                    <motion.div
-                      className="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all border border-gray-100 flex items-center justify-center h-24"
-                      whileHover={{ scale: 1.05, rotateY: -5 }}
-                      style={{ transformStyle: 'preserve-3d' }}
-                    >
-                      <img src={company.logo} alt={company.name} className="max-w-full max-h-full object-contain" />
-                    </motion.div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-            
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-8 text-center"
-            >
-              <div className="inline-flex gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">800+</div>
-                  <div className="text-gray-600">Companies partnered with us</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">8k+</div>
-                  <div className="text-gray-600">Learners already placed</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-orange-900/20"></div>
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-                Ready to Transform Your Career?
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-600 to-orange-500 text-transparent bg-clip-text">
+                  Our Hiring Partners
+                </span>
               </h2>
-              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Join thousands of successful professionals who started their journey with QUASTECH
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
-                >
-                  Enroll Now
-                </motion.a>
-                <motion.a
-                  href="/placement"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-600 transition-all"
-                >
-                  View Placements
-                </motion.a>
-              </div>
+              <p className="text-gray-600">Trusted by leading companies across industries</p>
             </motion.div>
+
+            <div className="relative overflow-hidden">
+              <motion.div
+                animate={{ x: [-1000, 0] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="flex gap-8"
+              >
+                {[...companyList, ...companyList].map((company, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 w-40 h-24 bg-white border-2 border-blue-100 hover:border-blue-500 rounded-lg p-4 flex items-center justify-center grayscale hover:grayscale-0 hover:shadow-lg transition-all duration-300"
+                  >
+                    <img
+                      src={company.logo}
+                      alt={company.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Branches Section */}
         <BranchSection />
-
         <Footer />
       </div>
     </DarkModeProvider>
