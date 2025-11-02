@@ -61,7 +61,7 @@ import { CourseStructuredData, BreadcrumbStructuredData } from "@/components/Str
 import { useToast } from "@/hooks/use-toast";
 import BranchSection from "@/components/BranchSection";
 
-const SoftwareTestingTraining = () => {
+const DataScienceWithPython = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -360,7 +360,7 @@ const SoftwareTestingTraining = () => {
                   <ChevronRight className="w-4 h-4" />
                   <span>IT Courses</span>
                   <ChevronRight className="w-4 h-4" />
-                  <span className="text-white font-semibold">Software Testing Training Program</span>
+                  <span className="text-white font-semibold">Data Science & Analytics with AI</span>
                 </motion.div>
 
                 {/* Course Title */}
@@ -370,7 +370,7 @@ const SoftwareTestingTraining = () => {
                   transition={{ delay: 0.2 }}
                   className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-2"
                 >
-                  Software Testing Training Program
+                  Data Science & Analytics with AI
                 </motion.h1>
 
                 {/* Course Description */}
@@ -380,7 +380,7 @@ const SoftwareTestingTraining = () => {
                   transition={{ delay: 0.3 }}
                   className="text-base md:text-lg text-white/90 max-w-2xl mb-5"
                 >
-                  Learn how to master software testing and quality assurance. Enroll now to learn from expert test engineers and get industry-ready.
+                  Master Data Science, Machine Learning, and AI with Python. Learn data analysis, visualization, ML algorithms, deep learning, and transform raw data into actionable insights with real-world projects.
                 </motion.p>
 
                 {/* Ratings Section */}
@@ -2084,7 +2084,7 @@ const SoftwareTestingTraining = () => {
   );
 };
 
-export default SoftwareTestingTraining;
+export default DataScienceWithPython;
 
 
 

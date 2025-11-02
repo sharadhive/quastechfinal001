@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MapPin, Send, User, BookOpen, MessageCircle, Users, Building, Clock, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import BranchVisitForm from "@/components/BranchVisitForm";
+import BookDemoForm from "@/components/BookDemoForm";
 
 const EnquiryForm = () => {
   const [formData, setFormData] = useState({
@@ -17,18 +19,103 @@ const EnquiryForm = () => {
     message: ""
   });
   const { toast } = useToast();
+  const [showBranchVisitForm, setShowBranchVisitForm] = useState(false);
+  const [showBookDemoForm, setShowBookDemoForm] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Enquiry Submitted!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", phone: "", course: "", message: "" });
+    
+    // Format the WhatsApp message with all enquiry form data
+    const whatsappMessage = `*New Course Enquiry*
+
+👤 *Name:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phone}
+📚 *Course Interest:* ${formData.course || 'Not specified'}
+💬 *Message:* ${formData.message || 'No additional message'}
+
+Please provide me with more information about this course.`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // QUASTECH WhatsApp number
+    const whatsappNumber = "918422800381";
+    
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Log for debugging
+    console.log("📱 Sending Enquiry to WhatsApp:");
+    console.log("Message:", whatsappMessage);
+    console.log("URL:", whatsappURL);
+    
+    // Open WhatsApp with the enquiry
+    const whatsappWindow = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+    
+    if (whatsappWindow) {
+      // Successfully opened
+      toast({
+        title: "✅ WhatsApp Opened!",
+        description: "Your enquiry is ready in WhatsApp. Just click Send!",
+      });
+      
+      // Reset form after a short delay
+      setTimeout(() => {
+        setFormData({ name: "", email: "", phone: "", course: "", message: "" });
+      }, 2000);
+    } else {
+      // Popup blocked - try alternative
+      toast({
+        title: "⚠️ Allow Popups",
+        description: "Please allow popups to send your enquiry via WhatsApp",
+        variant: "destructive"
+      });
+      
+      // Try opening in same window as fallback
+      window.location.href = whatsappURL;
+    }
   };
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Handle quick action clicks
+  const handleQuickAction = (actionType: string) => {
+    switch(actionType) {
+      case "Live Chat":
+        // Open WhatsApp with greeting message pre-filled
+        const chatMessage = "Hi, I would like to chat with a counselor about your courses.";
+        const encodedChatMessage = encodeURIComponent(chatMessage);
+        const whatsappURL = `https://wa.me/918422800381?text=${encodedChatMessage}`;
+        
+        console.log("📱 Opening Live Chat in WhatsApp:", chatMessage);
+        
+        const whatsappWindow = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+        
+        if (whatsappWindow) {
+          toast({
+            title: "✅ WhatsApp Opened!",
+            description: "Message is ready. Just click Send to start chat!",
+          });
+        } else {
+          toast({
+            title: "⚠️ Allow Popups",
+            description: "Please allow popups to open WhatsApp",
+            variant: "destructive"
+          });
+          // Fallback to same window
+          window.location.href = whatsappURL;
+        }
+        break;
+      case "Book Demo":
+        setShowBookDemoForm(true);
+        break;
+      case "Campus Visit":
+        setShowBranchVisitForm(true);
+        break;
+    }
   };
 
   const quickActions = [
@@ -97,9 +184,12 @@ const EnquiryForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <motion.div 
-                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 border border-blue-200/50"
-                  whileHover={{ scale: 1.02, y: -1 }}
+                {/* Call Us - Clickable */}
+                <motion.a 
+                  href="tel:+918422800381"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 border border-blue-200/50 cursor-pointer hover:shadow-md transition-all duration-300 hover:border-blue-300"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
                     <Phone className="w-5 h-5 text-white" />
@@ -108,11 +198,14 @@ const EnquiryForm = () => {
                     <p className="font-semibold text-gray-800 text-sm">Call Us</p>
                     <p className="text-gray-600 text-sm">+91 8422800381</p>
                   </div>
-                </motion.div>
+                </motion.a>
 
-                <motion.div 
-                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 border border-orange-200/50"
-                  whileHover={{ scale: 1.02, y: -1 }}
+                {/* Email Us - Clickable with professional message */}
+                <motion.a 
+                  href="mailto:info@quastech.in?subject=Course Enquiry from Website&body=Hello QUASTECH Team,%0D%0A%0D%0AI am interested in learning more about your courses and would like to receive detailed information about:%0D%0A%0D%0A- Available courses and programs%0D%0A- Course duration and schedule%0D%0A- Fee structure and payment options%0D%0A- Placement assistance%0D%0A- Certification details%0D%0A%0D%0APlease contact me at your earliest convenience.%0D%0A%0D%0AThank you,%0D%0A"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100/50 border border-orange-200/50 cursor-pointer hover:shadow-md transition-all duration-300 hover:border-orange-300"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-sm">
                     <Mail className="w-5 h-5 text-white" />
@@ -121,11 +214,14 @@ const EnquiryForm = () => {
                     <p className="font-semibold text-gray-800 text-sm">Email Us</p>
                     <p className="text-gray-600 text-sm">info@quastech.in</p>
                   </div>
-                </motion.div>
+                </motion.a>
 
+                {/* Visit Us - Clickable to open branch selection form */}
                 <motion.div 
-                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 border border-blue-200/50"
-                  whileHover={{ scale: 1.02, y: -1 }}
+                  onClick={() => setShowBranchVisitForm(true)}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 border border-blue-200/50 cursor-pointer hover:shadow-md transition-all duration-300 hover:border-blue-300"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center shadow-sm">
                     <MapPin className="w-5 h-5 text-white" />
@@ -152,27 +248,25 @@ const EnquiryForm = () => {
                 {quickActions.map((action, index) => (
                   <motion.div
                     key={action.title}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100/50 border border-gray-200/50 hover:border-blue-300/50 transition-all duration-300 cursor-pointer"
-                    whileHover={{ scale: 1.02, y: -1 }}
-                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleQuickAction(action.title)}
+                    className="flex items-center gap-3 p-4 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100/50 border-2 border-gray-200/50 hover:border-blue-400 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <div className={`w-8 h-8 bg-gradient-to-r ${action.color} rounded-lg flex items-center justify-center shadow-sm`}>
-                      <action.icon className="w-4 h-4 text-white" />
+                    <div className={`w-10 h-10 bg-gradient-to-r ${action.color} rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow`}>
+                      <action.icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <p className="font-semibold text-gray-800 text-sm">{action.title}</p>
+                      <p className="font-bold text-gray-800 text-sm group-hover:text-blue-600 transition-colors">{action.title}</p>
                       <p className="text-xs text-gray-600">{action.description}</p>
                     </div>
-                    <Button 
-                      size="sm" 
-                      className={`bg-gradient-to-r ${action.color} hover:opacity-90 text-white border-0 text-xs px-3 py-1 h-7`}
-                    >
+                    <div className={`bg-gradient-to-r ${action.color} text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm group-hover:shadow-md transition-all`}>
                       {action.action}
-                    </Button>
+                    </div>
                   </motion.div>
                 ))}
               </CardContent>
@@ -263,17 +357,53 @@ const EnquiryForm = () => {
                         <div className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 bg-gradient-to-r from-blue-500 to-orange-500 rounded-full flex items-center justify-center z-10">
                           <BookOpen className="w-3 h-3 text-white" />
                         </div>
-                        <Select onValueChange={(value) => handleChange("course", value)}>
+                        <Select onValueChange={(value) => handleChange("course", value)} value={formData.course}>
                           <SelectTrigger className="h-11 pl-11 bg-gray-50 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition-all duration-300 font-medium text-sm">
                             <SelectValue placeholder="Select a course" />
                           </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="web-development">Full Stack Web Development</SelectItem>
-                            <SelectItem value="data-science">Data Science & Analytics</SelectItem>
-                            <SelectItem value="mobile-development">Mobile App Development</SelectItem>
-                            <SelectItem value="cloud-computing">Cloud Computing & DevOps</SelectItem>
-                            <SelectItem value="artificial-intelligence">Artificial Intelligence & ML</SelectItem>
-                            <SelectItem value="cybersecurity">Cybersecurity & Ethical Hacking</SelectItem>
+                          <SelectContent className="z-[10000] bg-white max-h-[300px] overflow-y-auto">
+                            {/* Software Testing */}
+                            <SelectItem value="software-testing">Software Testing</SelectItem>
+                            <SelectItem value="manual-testing">Manual Testing</SelectItem>
+                            <SelectItem value="selenium-testing">Selenium Automation Testing</SelectItem>
+                            <SelectItem value="istqb-certification">ISTQB Certification</SelectItem>
+                            
+                            {/* Fullstack Development */}
+                            <SelectItem value="full-stack-java">Full Stack Java Development</SelectItem>
+                            <SelectItem value="full-stack-python">Full Stack Python Development</SelectItem>
+                            <SelectItem value="full-stack-web">Full Stack Web Development</SelectItem>
+                            <SelectItem value="full-stack-dotnet">Full Stack .Net Development</SelectItem>
+                            
+                            {/* Software Development */}
+                            <SelectItem value="java-development">Java Development</SelectItem>
+                            <SelectItem value="python-development">Python Development</SelectItem>
+                            <SelectItem value="mean-stack">MEAN Stack Development</SelectItem>
+                            <SelectItem value="mern-stack">MERN Stack Development</SelectItem>
+                            
+                            {/* Front End Development */}
+                            <SelectItem value="react-js">React JS Development</SelectItem>
+                            <SelectItem value="angular">Angular Development</SelectItem>
+                            <SelectItem value="web-designing">Web Designing</SelectItem>
+                            
+                            {/* Data Science & Analytics */}
+                            <SelectItem value="data-science">Data Science & Analytics with AI</SelectItem>
+                            <SelectItem value="data-analytics">Data Analysis & Visualization</SelectItem>
+                            
+                            {/* Big Data & RPA */}
+                            <SelectItem value="big-data">Big Data Engineering</SelectItem>
+                            <SelectItem value="rpa">RPA (Robotic Process Automation)</SelectItem>
+                            
+                            {/* Non-IT Courses */}
+                            <SelectItem value="digital-marketing">Digital Marketing</SelectItem>
+                            <SelectItem value="graphic-designing">Graphic Designing</SelectItem>
+                            <SelectItem value="web-graphic-designing">Web Graphic Designing</SelectItem>
+                            <SelectItem value="financial-accounting">Financial Accounting</SelectItem>
+                            <SelectItem value="accounting">Accounting</SelectItem>
+                            <SelectItem value="taxation">Taxation</SelectItem>
+                            
+                            {/* Degree Programs */}
+                            <SelectItem value="bca">BCA (Bachelor of Computer Applications)</SelectItem>
+                            <SelectItem value="quastech-degree">Quastech Degree Program</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -296,12 +426,16 @@ const EnquiryForm = () => {
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button 
                       type="submit" 
-                      className="w-full h-12 text-base font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 hover:from-orange-600 hover:via-orange-700 hover:to-red-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+                      className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
                     >
                       <Send className="w-4 h-4 mr-2" />
-                      Send Enquiry
+                      Send to WhatsApp
                     </Button>
                   </motion.div>
+                  
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    ✓ Opens WhatsApp with your enquiry details. Just click Send there!
+                  </p>
 
                   {/* Partner Logos Section */}
                   <motion.div 
@@ -343,6 +477,18 @@ const EnquiryForm = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Branch Visit Form Modal */}
+      <BranchVisitForm 
+        isOpen={showBranchVisitForm}
+        onClose={() => setShowBranchVisitForm(false)}
+      />
+
+      {/* Book Demo Form Modal */}
+      <BookDemoForm 
+        isOpen={showBookDemoForm}
+        onClose={() => setShowBookDemoForm(false)}
+      />
     </section>
   );
 };

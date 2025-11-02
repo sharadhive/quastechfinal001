@@ -61,7 +61,7 @@ import { CourseStructuredData, BreadcrumbStructuredData } from "@/components/Str
 import { useToast } from "@/hooks/use-toast";
 import BranchSection from "@/components/BranchSection";
 
-const SoftwareTestingTraining = () => {
+const FullStackWebDevelopment = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -162,148 +162,145 @@ const SoftwareTestingTraining = () => {
     },
   ];
 
-  // Software Testing Curriculum Modules
+  // Full Stack Web Development Curriculum Modules
   const curriculumModules = [
     {
       id: "module-1",
-      title: "SQL",
-      category: "#Database",
-      duration: "2 Weeks",
+      title: "HTML & CSS Fundamentals",
+      category: "#Frontend",
+      duration: "3 Weeks",
       topics: [
-        "Introduction to SQL",
-        "What is Data and Database?",
-        "Types of Database DBMS - Database Management System",
-        "RDBMS - Relational Database Management System",
-        "Operators",
-        "Statements",
-        "DDL",
-        "DML",
-        "TCL",
-        "DQL",
-        "Aggregate Function",
-        "Count(), Sum(), Min(), Max(), Avg()",
-        "Clauses",
-        "Subquery",
-        "Joins"
+        "Introduction to Web Development",
+        "HTML5 Semantic Elements",
+        "HTML Forms and Validation",
+        "CSS3 Styling & Selectors",
+        "CSS Flexbox & Grid Layouts",
+        "Responsive Web Design",
+        "Media Queries",
+        "CSS Animations & Transitions",
+        "Bootstrap Framework",
+        "Modern CSS Techniques"
       ]
     },
     {
       id: "module-2",
-      title: "Basic Java",
-      category: "#Programming",
-      duration: "3 Weeks",
+      title: "JavaScript Programming",
+      category: "#Frontend",
+      duration: "4 Weeks",
       topics: [
-        "Introduction of Java",
-        "Features of Java",
-        "JDK - Java Development Kit",
-        "Variables",
-        "Operators",
-        "Conditional Statement",
-        "String and String Method",
-        "Array",
-        "For Each Loop"
+        "JavaScript Fundamentals",
+        "Variables, Data Types & Operators",
+        "Functions and Scope",
+        "Arrays and Objects",
+        "DOM Manipulation",
+        "Event Handling",
+        "ES6+ Features (Arrow Functions, Destructuring)",
+        "Async JavaScript & Promises",
+        "Fetch API & AJAX",
+        "Local Storage & Session Storage"
       ]
     },
     {
       id: "module-3",
-      title: "Manual Testing",
-      category: "#Testing",
+      title: "React.js",
+      category: "#Frontend",
       duration: "4 Weeks",
       topics: [
-        "Introduction to Software Testing",
-        "SDLC Models - Software Development Life Cycle",
-        "Configuration Management",
-        "Quality Assurance (QA) & Quality Control (QC)",
-        "Verification and Validation (V & V- Model)",
-        "Software Test Life Cycle (STLC)",
-        "Test Methods, Levels and Types",
-        "Requirements Analysis",
-        "Use Cases",
-        "Test Design Techniques",
-        "Defect Management",
-        "Agile Testing",
-        "Manual and Automation Testing"
+        "Introduction to React",
+        "Components & Props",
+        "State Management",
+        "React Hooks (useState, useEffect, useContext)",
+        "React Router",
+        "Forms & Controlled Components",
+        "API Integration",
+        "Context API & Redux",
+        "React Best Practices",
+        "Building Real-World Projects"
       ]
     },
     {
       id: "module-4",
-      title: "ISTQB",
-      category: "#Certification",
-      duration: "2 Weeks",
+      title: "Node.js & Express",
+      category: "#Backend",
+      duration: "4 Weeks",
       topics: [
-        "Fundamentals Of Testing",
-        "Testing Throughout The Software Development Lifecycle",
-        "Static Testing",
-        "Test Techniques",
-        "Test Management",
-        "Tool Support For Testing"
+        "Introduction to Node.js",
+        "NPM & Package Management",
+        "Express.js Framework",
+        "RESTful API Development",
+        "Middleware & Routing",
+        "Authentication & Authorization",
+        "JWT & Session Management",
+        "File Upload & Handling",
+        "Error Handling",
+        "Express Best Practices"
       ]
     },
     {
       id: "module-5",
-      title: "Testing Tools",
-      category: "#Tools",
-      duration: "2 Weeks",
+      title: "MongoDB & Database",
+      category: "#Backend",
+      duration: "3 Weeks",
       topics: [
-        "JIRA",
-        "JMETER"
+        "Introduction to MongoDB",
+        "NoSQL vs SQL",
+        "CRUD Operations",
+        "MongoDB Atlas",
+        "Mongoose ODM",
+        "Database Design & Schema",
+        "Indexing & Performance",
+        "Aggregation Pipeline",
+        "Data Relationships",
+        "Database Security"
       ]
     },
     {
       id: "module-6",
-      title: "Selenium Java",
-      category: "#Automation",
+      title: "Full Stack Integration",
+      category: "#FullStack",
       duration: "3 Weeks",
       topics: [
-        "Class and Object",
-        "Inheritance",
-        "Polymorphism",
-        "Constructor",
-        "Encapsulation",
-        "Abstraction",
-        "Exception Handling"
+        "Connecting Frontend & Backend",
+        "RESTful API Consumption",
+        "State Management with APIs",
+        "Authentication Flow",
+        "File Upload Integration",
+        "Real-time Features with Socket.io",
+        "Deployment Preparation",
+        "Environment Variables",
+        "Error Handling & Debugging",
+        "Testing & Debugging Tools"
       ]
     },
     {
       id: "module-7",
-      title: "Selenium",
-      category: "#Automation",
-      duration: "5 Weeks",
+      title: "Deployment & DevOps",
+      category: "#Deployment",
+      duration: "2 Weeks",
       topics: [
-        "Introduction to Selenium Automation",
-        "Introduction & Installation of Selenium IDE",
-        "What is Selenium",
-        "Component of Selenium",
-        "Locators using WebDrivers",
-        "Handling Pop Up Messages",
-        "Selenium Webdrivers waits",
-        "Checkboxes, Radio Button, Drop down list",
-        "Action Classes",
-        "POM (Page Object Model)",
-        "POI (Poor Objection Implementation) fetch the data",
-    "Database Testing",
-        "Types of Frameworks",
-        "TestNG Introduction & Need",
-        "Advantages over Junit",
-        "Understanding usage of annotations",
-        "Running a test in TestNG",
-        "Assertions/reporting errors",
-        "Creating Data Driven & Keyword Driven Framework",
-        "Creating Hybrid Framework",
-        "Testing on Web Application using Selenium",
-        "MAVEN (Maven Project)",
-        "JENKINS (Jenkins Project)"
+        "Git & GitHub",
+        "Version Control Best Practices",
+        "Heroku Deployment",
+        "Vercel/Netlify for Frontend",
+        "MongoDB Atlas Cloud Database",
+        "Environment Configuration",
+        "CI/CD Basics",
+        "Domain & Hosting",
+        "Performance Optimization",
+        "Production Best Practices"
       ]
     }
   ];
 
   const careerOpportunities = [
-    "Software Test Engineer",
-    "QA Analyst",
-    "Test Automation Engineer",
-    "Performance Test Engineer",
-    "Mobile App Tester",
-    "API Test Engineer"
+    "Full Stack Web Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "MERN Stack Developer",
+    "React Developer",
+    "Node.js Developer",
+    "Web Application Developer",
+    "JavaScript Developer"
   ];
 
   return (
@@ -360,7 +357,7 @@ const SoftwareTestingTraining = () => {
                   <ChevronRight className="w-4 h-4" />
                   <span>IT Courses</span>
                   <ChevronRight className="w-4 h-4" />
-                  <span className="text-white font-semibold">Software Testing Training Program</span>
+                  <span className="text-white font-semibold">Full Stack Web Development</span>
                 </motion.div>
 
                 {/* Course Title */}
@@ -370,7 +367,7 @@ const SoftwareTestingTraining = () => {
                   transition={{ delay: 0.2 }}
                   className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-2"
                 >
-                  Software Testing Training Program
+                  Full Stack Web Development Course
                 </motion.h1>
 
                 {/* Course Description */}
@@ -380,7 +377,7 @@ const SoftwareTestingTraining = () => {
                   transition={{ delay: 0.3 }}
                   className="text-base md:text-lg text-white/90 max-w-2xl mb-5"
                 >
-                  Learn how to master software testing and quality assurance. Enroll now to learn from expert test engineers and get industry-ready.
+                  Master full stack web development with hands-on training in HTML, CSS, JavaScript, React, Node.js, MongoDB. Build real-world projects and launch your career as a Full Stack Developer.
                 </motion.p>
 
                 {/* Ratings Section */}
@@ -2084,7 +2081,7 @@ const SoftwareTestingTraining = () => {
   );
 };
 
-export default SoftwareTestingTraining;
+export default FullStackWebDevelopment;
 
 
 
