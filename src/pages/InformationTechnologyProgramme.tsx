@@ -76,11 +76,31 @@ const InformationTechnologyProgramme = () => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Enquiry Submitted!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    
+    const whatsappMessage = `*New Counselling Session Request*
+
+👤 *Name:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phone}
+💬 *Message:* ${formData.message || 'No additional message'}
+📚 *Course Page:* Information Technology Programme
+
+I am interested in booking a free counselling session. Please contact me at your earliest convenience.`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappNumber = "918422800381";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    console.log("📱 Sending to WhatsApp:", whatsappMessage);
+    const whatsappWindow = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+    
+    if (whatsappWindow) {
+      toast({ title: "✅ WhatsApp Opened!", description: "Your counselling request is ready in WhatsApp. Just click Send!" });
+      setTimeout(() => { setFormData({ name: "", email: "", phone: "", message: "" }); }, 2000);
+    } else {
+      toast({ title: "⚠️ Allow Popups", description: "Please allow popups to send your request via WhatsApp", variant: "destructive" });
+      window.location.href = whatsappURL;
+    }
   };
 
   // Hiring Partners logos from Placement component

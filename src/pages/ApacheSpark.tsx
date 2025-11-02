@@ -15,7 +15,20 @@ const ApacheSpark = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  const handleFormSubmit = (e: React.FormEvent) => { e.preventDefault(); toast({ title: "Enquiry Submitted!" }); setFormData({ name: "", email: "", phone: "", message: "" }); };
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const whatsappMessage = `*New Counselling Session Request*\n\n👤 *Name:* ${formData.name}\n📧 *Email:* ${formData.email}\n📱 *Phone:* ${formData.phone}\n💬 *Message:* ${formData.message || 'No additional message'}\n📚 *Course Page:* Apache Spark\n\nI am interested in booking a free counselling session. Please contact me at your earliest convenience.`;
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappURL = `https://wa.me/918422800381?text=${encodedMessage}`;
+    const whatsappWindow = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+    if (whatsappWindow) {
+      toast({ title: "✅ WhatsApp Opened!", description: "Your counselling request is ready in WhatsApp. Just click Send!" });
+      setTimeout(() => { setFormData({ name: "", email: "", phone: "", message: "" }); }, 2000);
+    } else {
+      toast({ title: "⚠️ Allow Popups", description: "Please allow popups to send your request via WhatsApp", variant: "destructive" });
+      window.location.href = whatsappURL;
+    }
+  };
 
   const modules = [
     { title: "Spark Basics", topics: ["RDD", "DataFrames", "Spark SQL", "Spark Streaming"] },
