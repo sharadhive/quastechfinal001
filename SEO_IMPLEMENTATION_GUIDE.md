@@ -226,3 +226,5 @@ For questions about SEO implementation, refer to:
 - StructuredData.tsx component
 - This documentation file
 
+
+

@@ -19,7 +19,10 @@ import ISTQBCertification from "./pages/ISTQBCertification";
 import FullStackJavaDevelopment from "./pages/FullStackJavaDevelopment";
 import FullStackPythonDevelopment from "./pages/FullStackPythonDevelopment";
 import FullStackWebDevelopment from "./pages/FullStackWebDevelopment";
+import FullStackDotNetDevelopment from "./pages/FullStackDotNetDevelopment";
 import MERNStackDevelopment from "./pages/MERNStackDevelopment";
+import MeanStackDevelopment from "./pages/MeanStackDevelopment";
+import BigDataEngineering from "./pages/BigDataEngineering";
 import DataScienceWithPython from "./pages/DataScienceWithPython";
 import MachineLearning from "./pages/MachineLearning";
 import DeepLearning from "./pages/DeepLearning";
@@ -84,7 +87,10 @@ const App = () => (
           <Route path="/full-stack-java-development" element={<FullStackJavaDevelopment />} />
           <Route path="/full-stack-python-development" element={<FullStackPythonDevelopment />} />
           <Route path="/web-development-course" element={<FullStackWebDevelopment />} />
+          <Route path="/full-stack-dotnet-development" element={<FullStackDotNetDevelopment />} />
           <Route path="/mern-stack-development" element={<MERNStackDevelopment />} />
+          <Route path="/mean-stack-development" element={<MeanStackDevelopment />} />
+          <Route path="/big-data-engineering" element={<BigDataEngineering />} />
           <Route path="/python-data-science" element={<DataScienceWithPython />} />
           <Route path="/machine-learning" element={<MachineLearning />} />
           <Route path="/deep-learning" element={<DeepLearning />} />

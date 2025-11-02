@@ -25,6 +25,7 @@ import {
 import CoursesMegaMenu from "@/components/CoursesMegaMenu";
 import CoursesModal from "@/components/CoursesModal";
 import SidebarMenu from "@/components/SidebarMenu";
+import CounsellorForm from "@/components/CounsellorForm";
 import { useDarkMode } from "@/contexts/DarkModeContext";
 
 const Header = () => {
@@ -36,6 +37,7 @@ const Header = () => {
   const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
   const [showCoursesModal, setShowCoursesModal] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showCounsellorForm, setShowCounsellorForm] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   useEffect(() => {
@@ -107,6 +109,9 @@ const Header = () => {
     <>
       {/* Courses Modal */}
       <CoursesModal isOpen={showCoursesModal} onClose={() => setShowCoursesModal(false)} />
+      
+      {/* Counsellor Form */}
+      <CounsellorForm isOpen={showCounsellorForm} onClose={() => setShowCounsellorForm(false)} />
       
       {/* Top Bar - Hidden on Mobile with Continuous Sliding Animation */}
       <div className="hidden md:block bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-1.5 px-3 text-xs shadow-md overflow-hidden">
@@ -327,7 +332,7 @@ const Header = () => {
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => window.location.href = 'tel:+918422800381'}
+                  onClick={() => setShowCounsellorForm(true)}
                 >
                   Speak to Counsellor
                 </Button>
@@ -367,6 +372,7 @@ const Header = () => {
           onClose={() => setIsSidebarOpen(false)}
           menuItems={sidebarMenuItems}
           onCoursesClick={() => setShowCoursesModal(true)}
+          onCounsellorClick={() => setShowCounsellorForm(true)}
         />
       </motion.header>
     </>

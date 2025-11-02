@@ -21,14 +21,29 @@ interface CoursesMegaMenuProps {
 const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) => {
   const courseData = {
     it: {
-      title: "IT Courses",
+      title: "Certification Courses",
       icon: BookOpen,
       color: "from-blue-500 to-cyan-500",
       courses: [
         {
-          title: "Software Testing Training",
+          title: "Software Testing",
           duration: "4-6 Months",
           link: "/software-testing-training"
+        },
+        {
+          title: "Manual Testing",
+          duration: "3-4 Months",
+          link: "/manual-testing"
+        },
+        {
+          title: "Selenium Automation Testing",
+          duration: "4-6 Months",
+          link: "/selenium-testing"
+        },
+        {
+          title: "ISTQB Certification",
+          duration: "2-3 Months",
+          link: "/istqb-certification"
         },
         {
           title: "Full Stack Java Development",
@@ -46,37 +61,37 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
           link: "/web-development-course"
         },
         {
-          title: "Data Science With Python",
-          duration: "8-10 Months",
-          link: "/python-data-science"
-        },
-        {
-          title: "Java Development Training",
+          title: "Java Development",
           duration: "4-6 Months",
           link: "/java-training"
         },
         {
-          title: "Python Development Training",
+          title: "Python Development",
           duration: "4-6 Months",
           link: "/python-training"
         },
         {
-          title: "Web Designing Training",
-          duration: "4-6 Months",
-          link: "/web-designing-training"
-        },
-        {
-          title: "React Training",
+          title: "React JS Development",
           duration: "3-4 Months",
           link: "/react-course"
         },
         {
-          title: "Angular Training",
+          title: "Angular Development",
           duration: "3-4 Months",
           link: "/angular-course"
         },
         {
-          title: "RPA Training",
+          title: "Web Designing",
+          duration: "4-6 Months",
+          link: "/web-designing-training"
+        },
+        {
+          title: "Data Science with AI",
+          duration: "8-10 Months",
+          link: "/python-data-science"
+        },
+        {
+          title: "RPA",
           duration: "4-6 Months",
           link: "/rpa"
         }
@@ -170,11 +185,6 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
           title: "Quastech Degree Program",
           duration: "3-4 Years",
           link: "/quastech-degree-program"
-        },
-        {
-          title: "Information Technology Programme",
-          duration: "2-3 Years",
-          link: "/information-technology-programme"
         }
       ]
     }

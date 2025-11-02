@@ -71,35 +71,37 @@ const FooterTitle = ({ title }) => (
 
 const Footer = () => {
   const itTrainingLinks = [
-    { name: "Software Testing Training", href: "/software-testing-training" },
+    { name: "Software Testing", href: "/software-testing-training" },
+    { name: "Manual Testing", href: "/manual-testing" },
+    { name: "Selenium Automation Testing", href: "/selenium-testing" },
+    { name: "ISTQB Certification", href: "/istqb-certification" },
     { name: "Full Stack Java Development", href: "/full-stack-java-development" },
     { name: "Full Stack Python Development", href: "/full-stack-python-development" },
     { name: "Full Stack Web Development", href: "/web-development-course" },
-    { name: "Data Science With Python", href: "/python-data-science" },
-    { name: "Java Development Training", href: "/java-training" },
-    { name: "Python Development Training", href: "/python-training" },
-    { name: "Web Designing Training", href: "/web-designing-training" },
-    { name: "React Training", href: "/react-course" },
-    { name: "Angular Training", href: "/angular-course" },
-    { name: "RPA Training", href: "/rpa" }
+    { name: "Java Development", href: "/java-training" },
+    { name: "Python Development", href: "/python-training" },
+    { name: "React JS Development", href: "/react-course" },
+    { name: "Angular Development", href: "/angular-course" },
+    { name: "Web Designing", href: "/web-designing-training" },
+    { name: "Data Science with AI", href: "/python-data-science" },
+    { name: "Big Data Engineering", href: "/big-data-engineering" },
+    { name: "RPA", href: "/rpa" }
   ];
 
   const dualDegreeLinks = [
-    { name: "BCA", href: "/bca" },
+    { name: "BCA (Bachelor of Computer Applications)", href: "/bca" },
     { name: "Quastech Degree Program", href: "/quastech-degree-program" }
   ];
   
   const onlineLinks = [
     { name: "Software Testing Training", href: "/software-testing-training" },
-    { name: "Full Stack Java Development", href: "/full-stack-java-development" },
-    { name: "Full Stack Python Development", href: "/full-stack-python-development" },
-    { name: "Full Stack Web Development", href: "/web-development-course" },
-    { name: "Data Science With Python", href: "/python-data-science" },
+    { name: "Full Stack Java Development Training", href: "/full-stack-java-development" },
+    { name: "Full Stack Python Development Training", href: "/full-stack-python-development" },
+    { name: "Full Stack Web Development Training", href: "/web-development-course" },
     { name: "Java Development Training", href: "/java-training" },
     { name: "Python Development Training", href: "/python-training" },
     { name: "Web Designing Training", href: "/web-designing-training" },
-    { name: "React Training", href: "/react-course" },
-    { name: "Angular Training", href: "/angular-course" },
+    { name: "Data Science with Python", href: "/python-data-science" },
     { name: "Digital Marketing", href: "/digital-marketing" }
   ];
 
@@ -116,11 +118,9 @@ const Footer = () => {
 
   const nonItTrainingLinks = [
     { name: "Digital Marketing", href: "/digital-marketing" },
-    { name: "Data Analysis & Visualization With Python", href: "/data-analysis-visualization" },
+    { name: "Data Analysis & Visualization", href: "/data-analysis-visualization" },
     { name: "Graphic Designing", href: "/graphic-designing" },
     { name: "Web Graphic Designing", href: "/web-graphic-designing" },
-    { name: "Management Information Systems (MIS)", href: "/management-information-systems" },
-    { name: "Information Technology Programme", href: "/information-technology-programme" },
     { name: "Financial Accounting", href: "/financial-accounting" },
     { name: "Accounting", href: "/accounting" },
     { name: "Taxation", href: "/taxation" }

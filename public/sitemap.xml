@@ -144,6 +144,27 @@
   </url>
   
   <url>
+    <loc>https://quastech.co.in/mean-stack-development</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://quastech.co.in/full-stack-dotnet-development</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://quastech.co.in/big-data-engineering</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://quastech.co.in/advanced-java</loc>
     <lastmod>2025-11-01</lastmod>
     <changefreq>weekly</changefreq>

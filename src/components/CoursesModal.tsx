@@ -10,18 +10,18 @@ interface CoursesModalProps {
 }
 
 type CourseTab = "it" | "non-it" | "eclass" | "degree";
-type ITCategory = "st" | "fd" | "sd" | "fed" | "ds" | "bde" | "rpa";
+type ITCategory = "st" | "fd" | "sd" | "fed" | "ds" | "bde" | "ai";
 
 const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
   const [activeTab, setActiveTab] = useState<CourseTab>("it");
   const [activeCategory, setActiveCategory] = useState<ITCategory>("st");
 
-  // IT Course Categories with their sub-courses - ALL RESTORED
+  // IT Course Categories - Your Exact List
   const itCourses = {
     st: {
       title: "Software Testing",
       courses: [
-        { name: "Software Testing Course", icon: "📚", link: "/software-testing-training" },
+        { name: "Software Testing", icon: "📚", link: "/software-testing-training" },
         { name: "Manual Testing", icon: "📚", link: "/manual-testing" },
         { name: "Selenium Automation Testing", icon: "📚", link: "/selenium-testing" },
         { name: "ISTQB Certification", icon: "📚", link: "/istqb-certification" }
@@ -33,7 +33,7 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
         { name: "Full Stack Java Development", icon: "📚", link: "/full-stack-java-development" },
         { name: "Full Stack Python Development", icon: "📚", link: "/full-stack-python-development" },
         { name: "Full Stack Web Development", icon: "📚", link: "/web-development-course" },
-        { name: "MERN Stack Development", icon: "📚", link: "/mern-stack-development" }
+        { name: "Full Stack .Net Development", icon: "📚", link: "/full-stack-dotnet-development" }
       ]
     },
     sd: {
@@ -41,8 +41,8 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
       courses: [
         { name: "Java Development", icon: "📚", link: "/java-training" },
         { name: "Python Development", icon: "📚", link: "/python-training" },
-        { name: "Advanced Java Programming", icon: "📚", link: "/advanced-java" },
-        { name: "Spring Boot Development", icon: "📚", link: "/spring-boot-training" }
+        { name: "Mean Stack Development", icon: "📚", link: "/mean-stack-development" },
+        { name: "Mern Stack Development", icon: "📚", link: "/mern-stack-development" }
       ]
     },
     fed: {
@@ -50,35 +50,32 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
       courses: [
         { name: "React JS Development", icon: "📚", link: "/react-course" },
         { name: "Angular Development", icon: "📚", link: "/angular-course" },
-        { name: "Vue JS Development", icon: "📚", link: "/vue-js-training" },
         { name: "Web Designing", icon: "📚", link: "/web-designing-training" }
       ]
     },
     ds: {
-      title: "Data Science With Python",
+      title: "Data Science & Analytics",
       courses: [
-        { name: "Data Science Fundamentals", icon: "📚", link: "/python-data-science" },
-        { name: "Machine Learning", icon: "📚", link: "/machine-learning" },
-        { name: "Deep Learning", icon: "📚", link: "/deep-learning" },
-        { name: "AI & Data Analytics", icon: "📚", link: "/ai-data-analytics" }
+        { name: "Data Science & Analytics with AI", icon: "📚", link: "/python-data-science" }
       ]
     },
     bde: {
-      title: "BIG Data Engineering",
+      title: "Big Data Engineering / Other IT",
       courses: [
-        { name: "Hadoop Development", icon: "📚", link: "/hadoop-training" },
-        { name: "Apache Spark", icon: "📚", link: "/apache-spark" },
-        { name: "Data Warehousing", icon: "📚", link: "/data-warehousing" },
-        { name: "ETL Development", icon: "📚", link: "/etl-development" }
+        { name: "Big Data Engineering", icon: "📚", link: "/big-data-engineering" },
+        { name: "RPA", icon: "📚", link: "/rpa" }
       ]
     },
-    rpa: {
-      title: "RPA",
+    ai: {
+      title: "Placement Course with AI",
       courses: [
-        { name: "UiPath Development", icon: "📚", link: "/uipath-training" },
-        { name: "Automation Anywhere", icon: "📚", link: "/automation-anywhere" },
-        { name: "Blue Prism", icon: "📚", link: "/blue-prism" },
-        { name: "RPA Architecture", icon: "📚", link: "/rpa" }
+        { name: "Software Testing with AI", icon: "🤖", link: "/software-testing-training" },
+        { name: "Full Stack Java Development with AI", icon: "🤖", link: "/full-stack-java-development" },
+        { name: "Full Stack Python Development with AI", icon: "🤖", link: "/full-stack-python-development" },
+        { name: "Full Stack .Net Development with AI", icon: "🤖", link: "/full-stack-dotnet-development" },
+        { name: "Digital Marketing with AI", icon: "🤖", link: "/digital-marketing" },
+        { name: "Data Science with AI", icon: "🤖", link: "/python-data-science" },
+        { name: "Data Analytics with AI", icon: "🤖", link: "/data-analysis-visualization" }
       ]
     }
   };
@@ -96,7 +93,7 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
     { name: "Taxation Course", link: "/taxation" }
   ];
 
-  // E-Class Courses
+  // E-Class / Online Courses - Your Exact List
   const eclassCourses = [
     { name: "SOFTWARE TESTING TRAINING", link: "/software-testing-training" },
     { name: "FULL STACK JAVA DEVELOPMENT TRAINING", link: "/full-stack-java-development" },
@@ -109,11 +106,10 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
     { name: "DIGITAL MARKETING", link: "/digital-marketing" }
   ];
 
-  // Degree Courses
+  // Degree Courses - Your Exact List
   const degreeCourses = [
     { name: "BCA (Bachelor of Computer Applications)", link: "/bca" },
-    { name: "Quastech Degree Program", link: "/quastech-degree-program" },
-    { name: "Information Technology Programme", link: "/information-technology-programme" }
+    { name: "Quastech Degree Program", link: "/quastech-degree-program" }
   ];
 
   const tabs = [
@@ -129,8 +125,8 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
     { id: "sd" as ITCategory, label: "Software Development" },
     { id: "fed" as ITCategory, label: "Front End Development" },
     { id: "ds" as ITCategory, label: "Data Science & Analytics" },
-    { id: "bde" as ITCategory, label: "Other IT Courses" },
-    { id: "rpa" as ITCategory, label: "All IT Courses" }
+    { id: "bde" as ITCategory, label: "Big Data Engineering / Other IT" },
+    { id: "ai" as ITCategory, label: "Placement Course with AI" }
   ];
 
   if (!isOpen) return null;

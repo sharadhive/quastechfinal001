@@ -44,3 +44,5 @@ const HadoopTraining = () => {
 
 export default HadoopTraining;
 
+
+
