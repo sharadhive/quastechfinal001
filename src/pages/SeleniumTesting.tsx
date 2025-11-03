@@ -353,7 +353,7 @@ const SeleniumTesting = () => {
         
         {/* Hero Banner Section - Rectangular Banner */}
         <section 
-          className="relative w-full h-[600px] flex items-center overflow-hidden"
+          className="relative w-full min-h-[600px] md:h-[600px] flex items-center overflow-hidden py-8 md:py-0"
           style={{
             background: 'linear-gradient(135deg, #3b82f6 0%, #f97316 100%)'
           }}
@@ -454,18 +454,15 @@ const SeleniumTesting = () => {
                   className="space-y-4 mb-4"
                 >
                   {/* Course Details Box */}
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 grid grid-cols-3 gap-3 border border-white/20">
+                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 md:p-4 grid grid-cols-3 gap-2 md:gap-3 border border-white/20">
                     <div className="text-center">
-                      <div className="text-xl font-bold text-white">60 Hrs.</div>
-                      <div className="text-white/80 text-xs mt-1">Duration</div>
+                      <div className="text-base md:text-xl font-bold text-white">60 Hrs.</div><div className="text-white/80 text-[10px] md:text-xs mt-1">Duration</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xl font-bold text-white">Online/Offline</div>
-                      <div className="text-white/80 text-xs mt-1">Format</div>
+                      <div className="text-xs md:text-xl font-bold text-white leading-tight">Online/Offline</div><div className="text-white/80 text-[10px] md:text-xs mt-1">Format</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xl font-bold text-white">LMS</div>
-                      <div className="text-white/80 text-xs mt-1">Life Time Access</div>
+                      <div className="text-base md:text-xl font-bold text-white">LMS</div><div className="text-white/80 text-[10px] md:text-xs mt-1">Life Time Access</div>
                     </div>
                   </div>
                 </motion.div>
@@ -475,12 +472,12 @@ const SeleniumTesting = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="flex flex-wrap gap-4 pt-3"
+                  className="flex flex-col md:flex-row flex-wrap gap-3 md:gap-4 pt-3"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+                    className="w-full md:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold px-4 md:px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs md:text-sm"
                   >
                     <Briefcase className="w-4 h-4" />
                     PLACEMENT REPORT
@@ -488,7 +485,7 @@ const SeleniumTesting = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                    className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+                    className="w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white font-bold px-4 md:px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs md:text-sm"
                   >
                     <Download className="w-4 h-4" />
                     DOWNLOAD CURRICULUM
@@ -496,7 +493,7 @@ const SeleniumTesting = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+                    className="w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white font-bold px-4 md:px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs md:text-sm"
                   >
                     <FileText className="w-4 h-4" />
                     INTERVIEW QUESTIONS
@@ -513,12 +510,12 @@ const SeleniumTesting = () => {
               >
                 <div className="bg-white rounded-2xl shadow-2xl overflow-hidden w-full">
                   {/* Form Header - Blue Section */}
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-5 relative">
-                    <Briefcase className="w-12 h-12 text-white/20 absolute top-3 right-3" />
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 md:p-5 relative">
+                    <Briefcase className="w-10 h-10 md:w-12 md:h-12 text-white/20 absolute top-2 md:top-3 right-2 md:right-3" />
                     <div className="relative z-10">
-                      <p className="text-white/90 text-xs mb-1">Book A Free</p>
-                      <h2 className="text-2xl font-bold text-white mb-1">Counselling Session</h2>
-                      <p className="text-white/80 text-xs">we train you to get hired.</p>
+                      <p className="text-white/90 text-[10px] md:text-xs mb-1">Book A Free</p>
+                      <h2 className="text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Counselling Session</h2>
+                      <p className="text-white/80 text-[10px] md:text-xs">we train you to get hired.</p>
                     </div>
                   </div>
 

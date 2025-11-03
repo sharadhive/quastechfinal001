@@ -39,6 +39,10 @@ const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showCounsellorForm, setShowCounsellorForm] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const languageRef = useRef<HTMLDivElement>(null);
+  const [isTranslateLoaded, setIsTranslateLoaded] = useState(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -59,6 +63,10 @@ const Header = () => {
           setActiveCourseType(null);
         }
       }
+      // Close language dropdown when clicking outside
+      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+        setShowLanguageDropdown(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -71,6 +79,143 @@ const Header = () => {
     { name: "E Class", type: "eclass", icon: Award, color: "from-orange-500 to-red-500" },
     { name: "Degree", type: "degree", icon: GraduationCap, color: "from-green-500 to-emerald-500" },
   ];
+
+  const languages = [
+    { code: "en", name: "English", flag: "🇬🇧" },
+    { code: "hi", name: "हिंदी", flag: "🇮🇳" },
+    { code: "mr", name: "मराठी", flag: "🇮🇳" },
+    { code: "pa", name: "ਪੰਜਾਬੀ", flag: "🇮🇳" },
+    { code: "bh", name: "भोजपुरी", flag: "🇮🇳" },
+    { code: "ar", name: "العربية", flag: "🇸🇦" },
+    { code: "te", name: "తెలుగు", flag: "🇮🇳" },
+    { code: "ta", name: "தமிழ்", flag: "🇮🇳" },
+    { code: "kn", name: "ಕನ್ನಡ", flag: "🇮🇳" },
+    { code: "ml", name: "മലയാളം", flag: "🇮🇳" },
+  ];
+
+  // Initialize Google Translate
+  useEffect(() => {
+    // Add Google Translate script
+    const addGoogleTranslateScript = () => {
+      if ((window as any).google?.translate) {
+        setIsTranslateLoaded(true);
+        return;
+      }
+      
+      if (document.getElementById('google-translate-script')) {
+        // Wait for script to load
+        const checkTranslate = setInterval(() => {
+          if ((window as any).google?.translate) {
+            setIsTranslateLoaded(true);
+            clearInterval(checkTranslate);
+          }
+        }, 100);
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    };
+
+    // Initialize Google Translate Widget
+    (window as any).googleTranslateElementInit = () => {
+      if ((window as any).google?.translate?.TranslateElement) {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr,pa,bh,ar,te,ta,kn,ml',
+            layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          'google_translate_element'
+        );
+        setIsTranslateLoaded(true);
+      }
+    };
+
+    addGoogleTranslateScript();
+    
+    // Check for existing language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    const cookieMatch = document.cookie.match(/googtrans=([^;]+)/);
+    
+    if (savedLang && savedLang !== 'en') {
+      setCurrentLanguage(savedLang);
+    } else if (cookieMatch) {
+      // Parse cookie format: /en/hi or /auto/hi
+      const cookieValue = decodeURIComponent(cookieMatch[1]);
+      const parts = cookieValue.split('/');
+      if (parts.length >= 3) {
+        const targetLang = parts[2];
+        if (targetLang && targetLang !== 'en') {
+          setCurrentLanguage(targetLang);
+          localStorage.setItem('preferredLanguage', targetLang);
+        }
+      }
+    }
+  }, []);
+
+  const handleLanguageChange = (languageCode: string) => {
+    // Don't change if already selected
+    if (currentLanguage === languageCode) {
+      setShowLanguageDropdown(false);
+      return;
+    }
+    
+    setCurrentLanguage(languageCode);
+    setShowLanguageDropdown(false);
+    
+    // If switching to English, clear all translation data
+    if (languageCode === 'en') {
+      localStorage.setItem('preferredLanguage', 'en');
+      
+      // Clear all Google Translate cookies
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${window.location.hostname}; path=/;`;
+      
+      // Remove hash and reload
+      if (window.location.hash) {
+        window.location.hash = '';
+      }
+      window.location.reload();
+      return;
+    }
+    
+    // Store language preference
+    localStorage.setItem('preferredLanguage', languageCode);
+    
+    // Clear any existing Google Translate cookies first
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${window.location.hostname}; path=/;`;
+    
+    // Set new Google Translate cookie with proper format
+    const cookieValue = `/en/${languageCode}`;
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    
+    // Set multiple cookie variations to ensure it works
+    document.cookie = `googtrans=${cookieValue}; expires=${expires.toUTCString()}; path=/`;
+    
+    // For production domains (not localhost)
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      const hostParts = window.location.hostname.split('.');
+      if (hostParts.length >= 2) {
+        const domain = '.' + hostParts.slice(-2).join('.');
+        document.cookie = `googtrans=${cookieValue}; expires=${expires.toUTCString()}; domain=${domain}; path=/`;
+      }
+    }
+    
+    // Set URL hash (Google Translate uses this)
+    window.location.hash = `googtrans(en|${languageCode})`;
+    
+    // Force reload to apply translation - most reliable method
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
 
   // Main navigation items (visible in navbar) - Empty since Placement is in sidebar menu
   const navItems: { name: string; href: string; isExternal: boolean }[] = [];
@@ -107,6 +252,9 @@ const Header = () => {
 
   return (
     <>
+      {/* Hidden Google Translate Element */}
+      <div id="google_translate_element" style={{ display: 'none' }}></div>
+      
       {/* Courses Modal */}
       <CoursesModal isOpen={showCoursesModal} onClose={() => setShowCoursesModal(false)} />
       
@@ -308,6 +456,53 @@ const Header = () => {
 
             {/* Animated Action Buttons */}
             <div className="hidden lg:flex items-center gap-3">
+              {/* Language Selector */}
+              <div ref={languageRef} className="relative">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300 flex items-center gap-1"
+                  title="Change Language"
+                >
+                  <Globe className="w-4 h-4 text-gray-600 dark-mode:text-gray-300" />
+                  <span className="text-xs font-semibold text-gray-600 dark-mode:text-gray-300">{currentLanguage.toUpperCase()}</span>
+                  <ChevronDown className={`w-3 h-3 text-gray-600 dark-mode:text-gray-300 transition-transform ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+                </motion.button>
+
+                {/* Language Dropdown */}
+                <AnimatePresence>
+                  {showLanguageDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 mt-2 w-48 bg-white dark-mode:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark-mode:border-gray-700 overflow-hidden z-50"
+                    >
+                      {languages.map((language) => (
+                        <motion.button
+                          key={language.code}
+                          whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          onClick={() => handleLanguageChange(language.code)}
+                          className={`w-full px-4 py-2.5 text-left flex items-center gap-3 transition-colors ${
+                            currentLanguage === language.code
+                              ? "bg-blue-50 dark-mode:bg-blue-900/20 text-blue-600 dark-mode:text-blue-400"
+                              : "text-gray-700 dark-mode:text-gray-300 hover:bg-gray-50 dark-mode:hover:bg-gray-700"
+                          }`}
+                        >
+                          <span className="text-lg">{language.flag}</span>
+                          <span className="text-sm font-medium">{language.name}</span>
+                          {currentLanguage === language.code && (
+                            <CheckSquare className="w-4 h-4 ml-auto" />
+                          )}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               {/* Eye Care / Dark Mode Toggle */}
               <motion.button
                 whileHover={{ scale: 1.05 }}

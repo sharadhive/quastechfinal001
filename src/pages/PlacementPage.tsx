@@ -20,34 +20,84 @@ import { BreadcrumbStructuredData } from "@/components/StructuredData";
 // Our placement students for banner and stories
 const students = [
   {
-    name: "Aditya Mistry",
-    role: "Full Stack Developer at Google",
-    image: "/images/Review list/1Aditya Mistry.jpeg"
+    name: "Saurabh Devlekar",
+    role: "Software Engineer",
+    image: "/images/studentreviews01/RewSaurabhDevlekar.jpg"
   },
   {
-    name: "Anurag Rajpurohit",
-    role: "Data Scientist at Microsoft",
-    image: "/images/Review list/2Anurag Rajpurohit.jpeg"
+    name: "Dipesh Sawant",
+    role: "Full Stack Developer",
+    image: "/images/studentreviews01/ReWDipeshSawant.jpg"
   },
   {
-    name: "Sagar Chaudhari",
-    role: "DevOps Engineer at Amazon",
-    image: "/images/Review list/3Sagar Chaudhari.jpeg"
+    name: "Kanchan Rane",
+    role: "Data Scientist",
+    image: "/images/studentreviews01/RewKanchanRane.jpg"
   },
   {
-    name: "Sonakshi Saxena",
-    role: "Mobile App Developer at Flipkart",
-    image: "/images/Review list/4Sonakshi Saxena.jpeg"
+    name: "Omkar Bhagojikarkare",
+    role: "DevOps Engineer",
+    image: "/images/studentreviews01/RewOmkarBhagojikarkare.jpg"
   },
   {
-    name: "Jesica Mistry",
-    role: "Cybersecurity Analyst at TCS",
-    image: "/images/Review list/5Jesica Mistry.jpeg"
+    name: "Pooja Khapar",
+    role: "Mobile App Developer",
+    image: "/images/studentreviews01/RewPoojaKhapar.jpg"
   },
   {
-    name: "Atish Satpute",
-    role: "Software Engineer at Infosys",
-    image: "/images/Review list/6Atish Satpute.jpeg"
+    name: "Sarjerao Sanjay Patil",
+    role: "Software Engineer",
+    image: "/images/studentreviews01/RewSarjeraoSanjayPatil.jpg"
+  },
+  {
+    name: "Student 7",
+    role: "Data Analyst",
+    image: "/images/studentreviews01/IMG-20251102-WA0002.jpg"
+  },
+  {
+    name: "Student 8",
+    role: "Software Tester",
+    image: "/images/studentreviews01/IMG-20251102-WA0003.jpg"
+  },
+  {
+    name: "Student 9",
+    role: "Web Developer",
+    image: "/images/studentreviews01/IMG-20251102-WA0004.jpg"
+  },
+  {
+    name: "Student 10",
+    role: "React Developer",
+    image: "/images/studentreviews01/IMG-20251102-WA0005.jpg"
+  },
+  {
+    name: "Student 11",
+    role: "Python Developer",
+    image: "/images/studentreviews01/IMG-20251102-WA0006.jpg"
+  },
+  {
+    name: "Student 12",
+    role: "Java Developer",
+    image: "/images/studentreviews01/IMG-20251102-WA0007.jpg"
+  },
+  {
+    name: "Student 13",
+    role: "Angular Developer",
+    image: "/images/studentreviews01/IMG-20251102-WA0008.jpg"
+  },
+  {
+    name: "Student 14",
+    role: "Digital Marketer",
+    image: "/images/studentreviews01/IMG-20251102-WA0009.jpg"
+  },
+  {
+    name: "Student 15",
+    role: "UI/UX Designer",
+    image: "/images/studentreviews01/IMG-20251102-WA0011.jpg"
+  },
+  {
+    name: "Student 16",
+    role: "Data Engineer",
+    image: "/images/studentreviews01/IMG-20251102-WA0012.jpg"
   }
 ];
 
@@ -118,32 +168,43 @@ const roleData = {
 };
 
 const getPlacements = (category) => {
+  // Use ONLY IMG students (indices 6-15) to avoid repeating Reviews component faces
   if(category === 'all') {
-    let results = [];
-    for (let i = 0; i < 10; i++) {
-      let comp = companyList[i % companyList.length];
-      results.push({
-        name: students[i % students.length].name,
-        role: students[i % students.length].role,
-        image: students[i % students.length].image,
-        company: comp,
-      });
-    }
-    return results;
-  } else {
-    let length = category === 'software-engineer' ? 3 : 2;
-    let results = [];
-    for (let i = 0; i < length; i++) {
-      let comp = companyList[(i + category.length) % companyList.length];
-      results.push({
-        name: students[i % students.length].name,
-        role: placementCategories.find(cat => cat.key === category)?.label || '',
-        image: students[i % students.length].image,
-        company: comp,
-      });
-    }
-    return results;
+    // Show only IMG students (10 total) - NO named students to avoid duplication with Reviews
+    return students.slice(6, 16).map((student, i) => ({
+      name: student.name,
+      role: student.role,
+      image: student.image,
+      company: companyList[(i + 6) % companyList.length],
+    }));
+  } else if (category === 'data-analyst') {
+    // Data Analyst: Only IMG students (3 total)
+    return [
+      { name: students[6].name, role: 'Data Analyst', image: students[6].image, company: companyList[6] }, // Student 7
+      { name: students[7].name, role: 'Data Analyst', image: students[7].image, company: companyList[7] }, // Student 8
+      { name: students[8].name, role: 'Data Analyst', image: students[8].image, company: companyList[8] }, // Student 9
+    ];
+  } else if (category === 'data-science') {
+    // Data Science: Only IMG students (2 total)
+    return [
+      { name: students[9].name, role: 'Data Science', image: students[9].image, company: companyList[9] }, // Student 10
+      { name: students[10].name, role: 'Data Science', image: students[10].image, company: companyList[10] }, // Student 11
+    ];
+  } else if (category === 'web-developer') {
+    // Web Developer: Only IMG students (3 total)
+    return [
+      { name: students[11].name, role: 'Web Developer', image: students[11].image, company: companyList[11] }, // Student 12
+      { name: students[12].name, role: 'Web Developer', image: students[12].image, company: companyList[12] }, // Student 13
+      { name: students[13].name, role: 'Web Developer', image: students[13].image, company: companyList[13] }, // Student 14
+    ];
+  } else if (category === 'software-engineer') {
+    // Software Engineer: Only IMG students (2 total)
+    return [
+      { name: students[14].name, role: 'Software Engineer', image: students[14].image, company: companyList[14] }, // Student 15
+      { name: students[15].name, role: 'Software Engineer', image: students[15].image, company: companyList[15] }, // Student 16
+    ];
   }
+  return [];
 };
 
 // Branch images for memories/campus drives
@@ -153,42 +214,42 @@ const branchImages = [
   "/images/branches/IMG20240104153526.jpg",
 ];
 
-// Testimonials data
+// Testimonials data - using ONLY IMG students (not in Reviews)
 const testimonials = [
   {
-    name: "Prashant Vhatkar",
-    role: "Software Engineer",
+    name: "Student 7",
+    role: "Data Analyst",
     company: "Top Company",
-    image: "/images/Review list/1Aditya Mistry.jpeg",
+    image: "/images/studentreviews01/IMG-20251102-WA0002.jpg",
     review: "Stuck after graduation with just theory, Quastech turned my career around. With their practical training and expert guidance, I gained the skills and confidence to crack interviews. Now, I'm placed at a top company with a great package, all thanks to Quastech's structured learning and constant support."
   },
   {
-    name: "Sakshi Badwaik",
-    role: "Data Analyst",
-    company: "Tech Company",
-    image: "/images/Review list/4Sonakshi Saxena.jpeg",
-    review: "From challenges and uncertainty to success, Quastech's expert trainers and hands-on training gave me the confidence and skills to secure my dream job. Their support and real-world projects truly made all the difference."
-  },
-  {
-    name: "Satish Gaulkar",
-    role: "Software Developer",
-    company: "Banking Sector",
-    image: "/images/Review list/6Atish Satpute.jpeg",
-    review: "After facing multiple rejections due to a career gap, Quastech helped me regain my confidence and sharpen my technical skills. From SQL to coding, I received all the support needed to restart my career successfully."
-  },
-  {
-    name: "Baggu Vamsi",
+    name: "Student 10",
     role: "Full Stack Developer",
     company: "IT Industry",
-    image: "/images/Review list/2Anurag Rajpurohit.jpeg",
+    image: "/images/studentreviews01/IMG-20251102-WA0005.jpg",
     review: "I joined Quastech's Full Stack Java Web Development course after thorough research. From mock interviews to technical training, every session helped me upskill with confidence. Thanks to Quastech's support, I successfully transitioned to a high-paying role."
   },
   {
-    name: "Dhanashree Lohar",
+    name: "Student 12",
     role: "Python Developer",
     company: "Tech Startup",
-    image: "/images/Review list/3Sagar Chaudhari.jpeg",
+    image: "/images/studentreviews01/IMG-20251102-WA0007.jpg",
     review: "Quastech exceeded my expectations with their well-structured curriculum and knowledgeable instructors. The instructors were not only skilled but also supportive throughout the course. Their guidance played a big role in helping me build a strong foundation in Python web development."
+  },
+  {
+    name: "Student 14",
+    role: "DevOps Engineer",
+    company: "Banking Sector",
+    image: "/images/studentreviews01/IMG-20251102-WA0009.jpg",
+    review: "After facing multiple rejections due to a career gap, Quastech helped me regain my confidence and sharpen my technical skills. From SQL to coding, I received all the support needed to restart my career successfully."
+  },
+  {
+    name: "Student 16",
+    role: "Mobile App Developer",
+    company: "Tech Company",
+    image: "/images/studentreviews01/IMG-20251102-WA0012.jpg",
+    review: "From challenges and uncertainty to success, Quastech's expert trainers and hands-on training gave me the confidence and skills to secure my dream job. Their support and real-world projects truly made all the difference."
   },
 ];
 
@@ -465,10 +526,11 @@ const PlacementPage = () => {
                   // Position grid higher - shifted more upward to prevent bottom cutoff
                   const startTop = Math.max(0, (containerHeight - totalHeight) / 22); // Shifted a bit more upward
                   
-                  // Create array of student images that repeats if needed
+                  // Create array of IMG student images only (indices 6-15) to avoid duplicating Reviews faces
+                  const imgStudents = students.slice(6, 16); // Only IMG students (10 total)
                   const studentImagesForGrid = [];
                   for (let i = 0; i < totalImages; i++) {
-                    studentImagesForGrid.push(students[i % students.length]);
+                    studentImagesForGrid.push(imgStudents[i % imgStudents.length]);
                   }
                   
                   return studentImagesForGrid.map((student, idx) => {

@@ -13,7 +13,7 @@ type CourseTab = "it" | "non-it" | "eclass" | "degree";
 type ITCategory = "st" | "fd" | "sd" | "fed" | "ds" | "bde" | "ai";
 
 const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
-  const [activeTab, setActiveTab] = useState<CourseTab>("it");
+  const [activeTab, setActiveTab] = useState<CourseTab>("non-it");
   const [activeCategory, setActiveCategory] = useState<ITCategory>("st");
 
   // IT Course Categories - Your Exact List
@@ -113,8 +113,8 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
   ];
 
   const tabs = [
-    { id: "it" as CourseTab, label: "Placement Courses with AI" },
     { id: "non-it" as CourseTab, label: "Certification Courses" },
+    { id: "it" as CourseTab, label: "Placement Courses with AI" },
     { id: "eclass" as CourseTab, label: "Online" },
     { id: "degree" as CourseTab, label: "Degree" }
   ];

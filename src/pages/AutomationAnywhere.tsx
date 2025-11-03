@@ -42,7 +42,7 @@ const AutomationAnywhere = () => {
       <BreadcrumbStructuredData items={[{ name: "Home", url: "/" }, { name: "Courses", url: "/#courses" }, { name: "Automation Anywhere", url: "/automation-anywhere" }]} />
       <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
         <Header />
-        <section className="relative w-full h-[600px] flex items-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #f97316 100%)' }}>
+        <section className="relative w-full min-h-[600px] md:h-[600px] flex items-center overflow-hidden py-8 md:py-0" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #f97316 100%)' }}>
           <div className="absolute inset-0 bg-black/20" />
           <div className="relative z-10 container mx-auto px-4"><div className="text-white space-y-6"><h1 className="text-5xl font-bold">Automation Anywhere</h1><p className="text-xl">Enterprise automation platform</p><Button className="bg-white text-blue-600">Enroll Now</Button></div></div>
         </section>
@@ -56,6 +56,8 @@ const AutomationAnywhere = () => {
 };
 
 export default AutomationAnywhere;
+
+
 
 
 

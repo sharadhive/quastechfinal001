@@ -14,69 +14,63 @@ import { useState } from "react";
 
 const Reviews = () => {
   const [currentReview, setCurrentReview] = useState(0);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [currentVideoUrl, setCurrentVideoUrl] = useState("");
 
   const reviews = [
     {
-      name: "Aditya Mistry",
-      role: "Full Stack Developer at Google",
-      course: "MERN Stack Development",
+      name: "Saurabh Devlekar",
+      role: "Software Engineer",
+      course: "Full Stack Development",
       rating: 5,
-      image: "/images/Review list/1Aditya Mistry.jpeg",
-      review: "QUASTECH completely transformed my career. The instructors are industry experts, and the hands-on projects gave me real-world experience. Within 3 months of completing the course, I landed my dream job at Google!",
-      videoUrl: "#"
+      image: "/images/studentreviews01/RewSaurabhDevlekar.jpg",
+      review: "QUASTECH completely transformed my career. The instructors are industry experts, and the hands-on projects gave me real-world experience. Within 3 months of completing the course, I landed my dream job!",
+      videoUrl: "https://www.instagram.com/p/DKhjEbATXjN/?hl=en",
+      hasVideo: true
     },
     {
-      name: "Anurag Rajpurohit",
-      role: "Data Scientist at Microsoft",
-      course: "Data Science & AI",
+      name: "Dipesh Sawant",
+      role: "Full Stack Developer",
+      course: "MERN Stack Development",
       rating: 5,
-      image: "/images/Review list/2Anurag Rajpurohit.jpeg",
+      image: "/images/studentreviews01/ReWDipeshSawant.jpg",
       review: "The Data Science course at QUASTECH is exceptional. The curriculum is up-to-date with industry standards, and the placement assistance is phenomenal. I highly recommend QUASTECH to anyone looking to break into tech.",
       videoUrl: "#"
     },
     {
-      name: "Sagar Chaudhari",
-      role: "DevOps Engineer at Amazon",
+      name: "Kanchan Rane",
+      role: "Data Scientist",
+      course: "Data Science & AI",
+      rating: 5,
+      image: "/images/studentreviews01/RewKanchanRane.jpg",
+      review: "The practical approach and live projects at QUASTECH made all the difference. The mentorship and career guidance helped me transition from a non-tech background to landing a role at a top company.",
+      videoUrl: "#"
+    },
+    {
+      name: "Omkar Bhagojikarkare",
+      role: "DevOps Engineer",
       course: "DevOps & Cloud Computing",
       rating: 5,
-      image: "/images/Review list/3Sagar Chaudhari.jpeg",
-      review: "The practical approach and live projects at QUASTECH made all the difference. The mentorship and career guidance helped me transition from a non-tech background to landing a role at Amazon.",
+      image: "/images/studentreviews01/RewOmkarBhagojikarkare.jpg",
+      review: "QUASTECH's mobile development course is comprehensive and practical. The instructors provide personal attention, and the placement cell worked tirelessly to help me secure my position.",
       videoUrl: "#"
     },
     {
-      name: "Sonakshi Saxena",
-      role: "Mobile App Developer at Flipkart",
+      name: "Pooja Khapar",
+      role: "Mobile App Developer",
       course: "Mobile App Development",
       rating: 5,
-      image: "/images/Review list/4Sonakshi Saxena.jpeg",
-      review: "QUASTECH's mobile development course is comprehensive and practical. The instructors provide personal attention, and the placement cell worked tirelessly to help me secure my position at Flipkart.",
-      videoUrl: "#"
-    },
-    {
-      name: "Jesica Mistry",
-      role: "Cybersecurity Analyst at TCS",
-      course: "Cybersecurity",
-      rating: 5,
-      image: "/images/Review list/5Jesica Mistry.jpeg",
+      image: "/images/studentreviews01/RewPoojaKhapar.jpg",
       review: "The cybersecurity program at QUASTECH is world-class. Real-world scenarios, hands-on labs, and expert mentorship prepared me for the challenges in the industry. Grateful for the excellent placement support!",
       videoUrl: "#"
     },
     {
-      name: "Atish Satpute",
-      role: "Software Engineer at Infosys",
+      name: "Sarjerao Sanjay Patil",
+      role: "Software Engineer",
       course: "Full Stack Development",
       rating: 5,
-      image: "/images/Review list/6Atish Satpute.jpeg",
+      image: "/images/studentreviews01/RewSarjeraoSanjayPatil.jpg",
       review: "QUASTECH provided me with the perfect foundation for my tech career. The comprehensive curriculum and practical projects helped me develop strong technical skills. The placement support was outstanding!",
-      videoUrl: "#"
-    },
-    {
-      name: "Rajiv Jangam",
-      role: "Cloud Solutions Architect at Wipro",
-      course: "Cloud Computing & DevOps",
-      rating: 5,
-      image: "/images/Review list/7Rajiv Jangam.jpeg",
-      review: "The cloud computing course at QUASTECH exceeded my expectations. The hands-on labs and real-world projects prepared me perfectly for my role. The instructors are knowledgeable and supportive throughout the journey.",
       videoUrl: "#"
     }
   ];
@@ -93,6 +87,18 @@ const Reviews = () => {
 
   const prevReview = () => {
     setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  const openVideoModal = (videoUrl: string) => {
+    // Convert Instagram URL to embed format
+    const embedUrl = videoUrl.replace('/p/', '/p/').replace('/?hl=en', '/embed/');
+    setCurrentVideoUrl(embedUrl);
+    setShowVideoModal(true);
+  };
+
+  const closeVideoModal = () => {
+    setShowVideoModal(false);
+    setCurrentVideoUrl("");
   };
 
   return (
@@ -185,10 +191,16 @@ const Reviews = () => {
               </blockquote>
               
               <div className="flex items-center justify-end gap-4">
-                <Button variant="outline" size="sm">
-                  <Play className="w-4 h-4 mr-2" />
-                  Watch Video
-                </Button>
+                {reviews[currentReview].hasVideo && (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => openVideoModal(reviews[currentReview].videoUrl)}
+                  >
+                    <Play className="w-4 h-4 mr-2" />
+                    Watch Video
+                  </Button>
+                )}
                 <div className="flex gap-2">
                   <Button
                     variant="ghost"
@@ -257,8 +269,19 @@ const Reviews = () => {
                       "{review.review.substring(0, 120)}..."
                     </blockquote>
                     
-                    <div className="flex items-center justify-end pt-4 border-t">
-                      <Button variant="ghost" size="sm">
+                    <div className="flex items-center justify-between pt-4 border-t">
+                      {review.hasVideo && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => openVideoModal(review.videoUrl)}
+                          className="text-blue-600 hover:text-blue-700"
+                        >
+                          <Play className="w-4 h-4 mr-1" />
+                          Watch Video
+                        </Button>
+                      )}
+                      <Button variant="ghost" size="sm" className="ml-auto">
                         Read More
                       </Button>
                     </div>
@@ -293,6 +316,55 @@ const Reviews = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Video Modal */}
+        {showVideoModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={closeVideoModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-lg w-full shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeVideoModal}
+                className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Instagram Embed */}
+              <div className="w-full aspect-[9/16] bg-gray-100">
+                <iframe
+                  src={currentVideoUrl}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowTransparency
+                  allow="encrypted-media"
+                  title="Student Video Review"
+                />
+              </div>
+
+              {/* Video Info */}
+              <div className="p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <h3 className="font-bold text-lg mb-1">{reviews[currentReview].name}</h3>
+                <p className="text-sm text-white/90">{reviews[currentReview].role}</p>
+                <p className="text-xs text-white/80 mt-1">{reviews[currentReview].course}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
