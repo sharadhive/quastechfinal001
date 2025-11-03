@@ -74,8 +74,8 @@ const Header = () => {
   }, [isHoveringDropdown]);
 
   const courseTypes = [
-    { name: "IT PLACEMENT COURSES", type: "it", icon: BookOpen, color: "from-blue-500 to-cyan-500" },
-    { name: "NON IT PLACEMENT COURSES", type: "non-it", icon: Globe, color: "from-purple-500 to-pink-500" },
+    { name: "CERTIFICATION COURSES", type: "it", icon: BookOpen, color: "from-blue-500 to-cyan-500" },
+    { name: "PLACEMENT COURSES WITH AI", type: "non-it", icon: Award, color: "from-purple-500 to-pink-500" },
     { name: "E Class", type: "eclass", icon: Award, color: "from-orange-500 to-red-500" },
     { name: "Degree", type: "degree", icon: GraduationCap, color: "from-green-500 to-emerald-500" },
   ];
@@ -91,6 +91,16 @@ const Header = () => {
     { code: "ta", name: "தமிழ்", flag: "🇮🇳" },
     { code: "kn", name: "ಕನ್ನಡ", flag: "🇮🇳" },
     { code: "ml", name: "മലയാളം", flag: "🇮🇳" },
+    { code: "fr", name: "Français", flag: "🇫🇷" },
+    { code: "de", name: "Deutsch", flag: "🇩🇪" },
+    { code: "ru", name: "Русский", flag: "🇷🇺" },
+    { code: "es", name: "Español", flag: "🇪🇸" },
+    { code: "pt", name: "Português", flag: "🇵🇹" },
+    { code: "it", name: "Italiano", flag: "🇮🇹" },
+    { code: "zh", name: "中文", flag: "🇨🇳" },
+    { code: "ja", name: "日本語", flag: "🇯🇵" },
+    { code: "ko", name: "한국어", flag: "🇰🇷" },
+    { code: "nl", name: "Nederlands", flag: "🇳🇱" },
   ];
 
   // Initialize Google Translate
@@ -126,7 +136,7 @@ const Header = () => {
         new (window as any).google.translate.TranslateElement(
           {
             pageLanguage: 'en',
-            includedLanguages: 'en,hi,mr,pa,bh,ar,te,ta,kn,ml',
+            includedLanguages: 'en,hi,mr,pa,bh,ar,te,ta,kn,ml,fr,de,ru,es,pt,it,zh,ja,ko,nl',
             layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
@@ -326,7 +336,7 @@ const Header = () => {
                     className="flex items-center gap-1.5"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <span className="font-medium text-xs">🎓 1000+ Students Placed</span>
+                    <span className="font-medium text-xs">🎓 100+ Students Placed</span>
                   </motion.div>
                   <motion.div 
                     className="flex items-center gap-1.5"
@@ -478,7 +488,7 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-48 bg-white dark-mode:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark-mode:border-gray-700 overflow-hidden z-50"
+                      className="absolute right-0 mt-2 w-48 max-h-96 bg-white dark-mode:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark-mode:border-gray-700 overflow-y-auto z-50"
                     >
                       {languages.map((language) => (
                         <motion.button

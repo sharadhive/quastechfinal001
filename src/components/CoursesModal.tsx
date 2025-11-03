@@ -13,69 +13,57 @@ type CourseTab = "it" | "non-it" | "eclass" | "degree";
 type ITCategory = "st" | "fd" | "sd" | "fed" | "ds" | "bde" | "ai";
 
 const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
-  const [activeTab, setActiveTab] = useState<CourseTab>("non-it");
+  const [activeTab, setActiveTab] = useState<CourseTab>("it");
   const [activeCategory, setActiveCategory] = useState<ITCategory>("st");
 
-  // IT Course Categories - Your Exact List
+  // Certification Course Categories
   const itCourses = {
     st: {
       title: "Software Testing",
       courses: [
-        { name: "Software Testing", icon: "📚", link: "/software-testing-training" },
-        { name: "Manual Testing", icon: "📚", link: "/manual-testing" },
-        { name: "Selenium Automation Testing", icon: "📚", link: "/selenium-testing" },
-        { name: "ISTQB Certification", icon: "📚", link: "/istqb-certification" }
+        { name: "Software Testing", icon: "📚", link: "/software-testing-training", description: "Comprehensive testing training" },
+        { name: "Manual Testing", icon: "📚", link: "/manual-testing", description: "Fundamentals of QA" },
+        { name: "Selenium Automation Testing", icon: "📚", link: "/selenium-testing", description: "Automation with Selenium" },
+        { name: "ISTQB Certification", icon: "📚", link: "/istqb-certification", description: "Global QA certification" }
       ]
     },
     fd: {
       title: "Fullstack Development",
       courses: [
-        { name: "Full Stack Java Development", icon: "📚", link: "/full-stack-java-development" },
-        { name: "Full Stack Python Development", icon: "📚", link: "/full-stack-python-development" },
-        { name: "Full Stack Web Development", icon: "📚", link: "/web-development-course" },
-        { name: "Full Stack .Net Development", icon: "📚", link: "/full-stack-dotnet-development" }
+        { name: "Full Stack Java Development", icon: "📚", link: "/full-stack-java-development", description: "Java + Spring + React" },
+        { name: "Full Stack Python Development", icon: "📚", link: "/full-stack-python-development", description: "Django + Flask + React" },
+        { name: "Full Stack Web Development", icon: "📚", link: "/web-development-course", description: "MERN Stack" },
+        { name: "Full Stack .Net Development", icon: "📚", link: "/full-stack-dotnet-development", description: "ASP.NET Core + Angular" }
       ]
     },
     sd: {
       title: "Software Development",
       courses: [
-        { name: "Java Development", icon: "📚", link: "/java-training" },
-        { name: "Python Development", icon: "📚", link: "/python-training" },
-        { name: "Mean Stack Development", icon: "📚", link: "/mean-stack-development" },
-        { name: "Mern Stack Development", icon: "📚", link: "/mern-stack-development" }
+        { name: "Java Development", icon: "📚", link: "/java-training", description: "Core & Advanced Java" },
+        { name: "Python Development", icon: "📚", link: "/python-training", description: "Python programming" },
+        { name: "Mean Stack Development", icon: "📚", link: "/mean-stack-development", description: "MongoDB + Angular" },
+        { name: "Mern Stack Development", icon: "📚", link: "/mern-stack-development", description: "MongoDB + React" }
       ]
     },
     fed: {
       title: "Front End Development",
       courses: [
-        { name: "React JS Development", icon: "📚", link: "/react-course" },
-        { name: "Angular Development", icon: "📚", link: "/angular-course" },
-        { name: "Web Designing", icon: "📚", link: "/web-designing-training" }
+        { name: "React JS Development", icon: "📚", link: "/react-course", description: "Modern React development" },
+        { name: "Angular Development", icon: "📚", link: "/angular-course", description: "Enterprise Angular apps" },
+        { name: "Web Designing", icon: "📚", link: "/web-designing-training", description: "HTML, CSS, JavaScript" }
       ]
     },
     ds: {
       title: "Data Science & Analytics",
       courses: [
-        { name: "Data Science & Analytics with AI", icon: "📚", link: "/python-data-science" }
+        { name: "Data Science & Analytics with AI", icon: "📚", link: "/python-data-science", description: "ML & Data analysis" }
       ]
     },
     bde: {
       title: "Big Data Engineering / Other IT",
       courses: [
-        { name: "Big Data Engineering", icon: "📚", link: "/big-data-engineering" },
-        { name: "RPA", icon: "📚", link: "/rpa" }
-      ]
-    },
-    ai: {
-      title: "Placement Course with AI",
-      courses: [
-        { name: "Software Testing with AI", icon: "🤖", link: "/software-testing-training" },
-        { name: "Full Stack Java Development with AI", icon: "🤖", link: "/full-stack-java-development" },
-        { name: "Full Stack Python Development with AI", icon: "🤖", link: "/full-stack-python-development" },
-        { name: "Full Stack .Net Development with AI", icon: "🤖", link: "/full-stack-dotnet-development" },
-        { name: "Digital Marketing with AI", icon: "🤖", link: "/digital-marketing" },
-        { name: "Data Science with AI", icon: "🤖", link: "/python-data-science" },
-        { name: "Data Analytics with AI", icon: "🤖", link: "/data-analysis-visualization" }
+        { name: "Big Data Engineering", icon: "📚", link: "/big-data-engineering", description: "Hadoop + Spark" },
+        { name: "RPA", icon: "📚", link: "/rpa", description: "Process automation" }
       ]
     }
   };
@@ -113,20 +101,30 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
   ];
 
   const tabs = [
-    { id: "non-it" as CourseTab, label: "Certification Courses" },
-    { id: "it" as CourseTab, label: "Placement Courses with AI" },
+    { id: "it" as CourseTab, label: "Certification Courses" },
+    { id: "non-it" as CourseTab, label: "Placement Courses with AI" },
     { id: "eclass" as CourseTab, label: "Online" },
     { id: "degree" as CourseTab, label: "Degree" }
   ];
 
-  const itCategories = [
+  const certificationCategories = [
     { id: "st" as ITCategory, label: "Software Testing" },
     { id: "fd" as ITCategory, label: "Fullstack Development" },
     { id: "sd" as ITCategory, label: "Software Development" },
     { id: "fed" as ITCategory, label: "Front End Development" },
     { id: "ds" as ITCategory, label: "Data Science & Analytics" },
-    { id: "bde" as ITCategory, label: "Big Data Engineering / Other IT" },
-    { id: "ai" as ITCategory, label: "Placement Course with AI" }
+    { id: "bde" as ITCategory, label: "Big Data Engineering / Other IT" }
+  ];
+
+  // Placement Courses with AI (displayed as simple list)
+  const aiPlacementCourses = [
+    { name: "Software Testing with AI", icon: "🤖", link: "/software-testing-training" },
+    { name: "Full Stack Java Development with AI", icon: "🤖", link: "/full-stack-java-development" },
+    { name: "Full Stack Python Development with AI", icon: "🤖", link: "/full-stack-python-development" },
+    { name: "Full Stack .NET Development with AI", icon: "🤖", link: "/full-stack-dotnet-development" },
+    { name: "Digital Marketing with AI", icon: "🤖", link: "/digital-marketing" },
+    { name: "Data Science with AI", icon: "🤖", link: "/python-data-science" },
+    { name: "Data Analytics with AI", icon: "🤖", link: "/data-analysis-visualization" }
   ];
 
   if (!isOpen) return null;
@@ -191,12 +189,12 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
 
           {/* Modal Body */}
           <div className="p-6 overflow-y-auto max-h-[calc(85vh-180px)]">
-            {/* IT Courses - Two Column Layout */}
+            {/* Certification Courses - Two Column Layout */}
             {activeTab === "it" && (
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 {/* Left Sidebar - Categories */}
                 <div className="md:col-span-5 space-y-2">
-                  {itCategories.map((category) => (
+                  {certificationCategories.map((category) => (
                     <button
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
@@ -253,29 +251,38 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
               </div>
             )}
 
-            {/* NON IT Courses - Grid Layout */}
+            {/* Placement Courses with AI - Grid Layout */}
             {activeTab === "non-it" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {nonItCourses.map((course, index) => (
-                  <Link to={course.link} key={index} onClick={onClose}>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="group bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 rounded-lg p-4 cursor-pointer transition-all duration-300 hover:shadow-md"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <BookOpen className="w-5 h-5 text-purple-600" />
-                          <span className="font-medium text-gray-800 group-hover:text-purple-600 transition-colors text-sm">
-                            {course.name}
-                          </span>
+              <div>
+                <div className="mb-6 p-4 bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg border border-purple-200">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 flex items-center gap-2">
+                    <span className="text-2xl">🤖</span>
+                    AI-Enhanced Placement Courses
+                  </h3>
+                  <p className="text-sm text-gray-600">Industry-focused training with AI integration and guaranteed placement support</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {aiPlacementCourses.map((course, index) => (
+                    <Link to={course.link} key={index} onClick={onClose}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="group bg-gradient-to-r from-purple-50 via-blue-50 to-cyan-50 hover:from-purple-100 hover:via-blue-100 hover:to-cyan-100 rounded-lg p-4 cursor-pointer transition-all duration-300 hover:shadow-lg border border-purple-100 hover:border-purple-400"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="text-2xl">{course.icon}</span>
+                            <span className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors text-sm">
+                              {course.name}
+                            </span>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-purple-600 group-hover:translate-x-1 transition-transform" />
                         </div>
-                        <ArrowRight className="w-4 h-4 text-purple-600 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </motion.div>
-                  </Link>
-                ))}
+                      </motion.div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
 

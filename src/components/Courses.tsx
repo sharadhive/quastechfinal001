@@ -437,14 +437,14 @@ const Courses = () => {
         >
           <div className="bg-gradient-hero rounded-3xl p-12 lg:p-16 text-white shadow-xl">
             <h3 className="heading-md mb-6">
-              Not sure which course is right for you?
+              Transform Your Career with Expert Guidance
             </h3>
             <p className="text-xl mb-10 text-white/90 max-w-2xl mx-auto">
-              Talk to our career counselors and get personalized course recommendations
+              Connect with our industry-expert career counselors for personalized course recommendations tailored to your goals. Get AI-powered career path analysis and unlock your potential with the perfect course match!
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button variant="glass" size="xl" className="text-lg font-bold">
-                Free Career Counseling
+                Get Free Career Counseling →
               </Button>
             </div>
           </div>

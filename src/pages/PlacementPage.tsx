@@ -324,10 +324,10 @@ const PlacementPage = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const placementStats = [
-    { icon: Users, value: "40k+", label: "Learners Trained" },
+    { icon: Users, value: "10k+", label: "Learners Trained" },
     { icon: Award, value: "800+", label: "Hiring Companies" },
-    { icon: Target, value: "1,000+", label: "Placement Drives conducted" },
-    { icon: Star, value: "19.5LPA", label: "Highest Salary Drawn" },
+    { icon: Target, value: "100+", label: "Placement Drives conducted" },
+    { icon: Star, value: "10LPA", label: "Highest Salary Drawn" },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -1070,7 +1070,7 @@ const PlacementPage = () => {
                   <div className="text-gray-600">Companies partnered with us</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">8k+</div>
+                  <div className="text-4xl font-bold text-blue-600">10k+</div>
                   <div className="text-gray-600">Learners already placed</div>
                 </div>
               </div>

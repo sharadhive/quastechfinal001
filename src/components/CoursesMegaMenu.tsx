@@ -61,6 +61,11 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
           link: "/web-development-course"
         },
         {
+          title: "Full Stack .NET Development",
+          duration: "6-8 Months",
+          link: "/full-stack-dotnet-development"
+        },
+        {
           title: "Java Development",
           duration: "4-6 Months",
           link: "/java-training"
@@ -69,6 +74,16 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
           title: "Python Development",
           duration: "4-6 Months",
           link: "/python-training"
+        },
+        {
+          title: "MEAN Stack Development",
+          duration: "6-8 Months",
+          link: "/mean-stack-development"
+        },
+        {
+          title: "MERN Stack Development",
+          duration: "6-8 Months",
+          link: "/mern-stack-development"
         },
         {
           title: "React JS Development",
@@ -86,9 +101,14 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
           link: "/web-designing-training"
         },
         {
-          title: "Data Science with AI",
+          title: "Data Science & Analytics",
           duration: "8-10 Months",
           link: "/python-data-science"
+        },
+        {
+          title: "Big Data Engineering",
+          duration: "6-8 Months",
+          link: "/big-data-engineering"
         },
         {
           title: "RPA",
@@ -98,49 +118,44 @@ const CoursesMegaMenu = ({ type, onClose, onTabChange }: CoursesMegaMenuProps) =
       ]
     },
     "non-it": {
-      title: "Non-IT Courses",
-      icon: Globe,
+      title: "Placement Courses with AI",
+      icon: Award,
       color: "from-purple-500 to-pink-500",
       courses: [
         {
-          title: "Digital Marketing",
+          title: "Software Testing with AI",
+          duration: "4-6 Months",
+          link: "/software-testing-training"
+        },
+        {
+          title: "Full Stack Java Development with AI",
+          duration: "6-8 Months",
+          link: "/full-stack-java-development"
+        },
+        {
+          title: "Full Stack Python Development with AI",
+          duration: "6-8 Months",
+          link: "/full-stack-python-development"
+        },
+        {
+          title: "Full Stack .NET Development with AI",
+          duration: "6-8 Months",
+          link: "/full-stack-dotnet-development"
+        },
+        {
+          title: "Digital Marketing with AI",
           duration: "4-6 Months",
           link: "/digital-marketing"
         },
         {
-          title: "Data Analysis & Visualization",
+          title: "Data Science with AI",
+          duration: "8-10 Months",
+          link: "/python-data-science"
+        },
+        {
+          title: "Data Analytics with AI",
           duration: "4-6 Months",
           link: "/data-analysis-visualization"
-        },
-        {
-          title: "Graphic Designing",
-          duration: "3-4 Months",
-          link: "/graphic-designing"
-        },
-        {
-          title: "Web Graphic Designing",
-          duration: "4-6 Months",
-          link: "/web-graphic-designing"
-        },
-        {
-          title: "Financial Accounting",
-          duration: "4-6 Months",
-          link: "/financial-accounting"
-        },
-        {
-          title: "Accounting",
-          duration: "3-4 Months",
-          link: "/accounting"
-        },
-        {
-          title: "Taxation",
-          duration: "3-4 Months",
-          link: "/taxation"
-        },
-        {
-          title: "Management Information Systems",
-          duration: "4-6 Months",
-          link: "/management-information-systems"
         }
       ]
     },

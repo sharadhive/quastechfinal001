@@ -75,7 +75,7 @@ const AboutPage = () => {
     {
       icon: Shield,
       title: "Reliability",
-      description: "We've been a trusted name in IT education for over 15 years, consistently delivering quality training and outstanding placement results. Our track record speaks for itself with 40,000+ successful career transformations."
+      description: "We've been a trusted name in IT education for over 15 years, consistently delivering quality training and outstanding placement results. Our track record speaks for itself with 10,000+ successful career transformations."
     },
     {
       icon: Lightbulb,
@@ -100,11 +100,11 @@ const AboutPage = () => {
   ];
 
   const achievements = [
-    { icon: Users, value: "40,000+", label: "Students Trained", description: "Successfully trained and placed" },
+    { icon: Users, value: "10,000+", label: "Students Trained", description: "Successfully trained and placed" },
     { icon: Building2, value: "800+", label: "Hiring Partners", description: "Trusted companies" },
     { icon: Trophy, value: "95%", label: "Placement Rate", description: "Career success rate" },
     { icon: Clock, value: "15+", label: "Years of Excellence", description: "Industry experience" },
-    { icon: Award, value: "19.5 LPA", label: "Highest Package", description: "Top placement offer" },
+    { icon: Award, value: "10 LPA", label: "Highest Package", description: "Top placement offer" },
     { icon: Globe, value: "5", label: "Cities", description: "Pan-India presence" }
   ];
 
@@ -151,7 +151,7 @@ const AboutPage = () => {
     {
       year: "2024",
       title: "Industry Leader",
-      description: "Recognized as one of India's leading IT training institutes with 40,000+ successful placements and 800+ hiring partners.",
+      description: "Recognized as one of India's leading IT training institutes with 10,000+ successful placements and 800+ hiring partners.",
       icon: Star
     }
   ];
@@ -297,7 +297,7 @@ const AboutPage = () => {
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 {[
-                  { value: "40,000+", label: "Students" },
+                  { value: "10,000+", label: "Students" },
                   { value: "800+", label: "Companies" },
                   { value: "95%", label: "Placement" },
                   { value: "15+", label: "Years" }
@@ -426,7 +426,7 @@ const AboutPage = () => {
                 Our training approach is well-organized, systematized, and standardized, ensuring every student receives quality education that prepares them for successful careers in the IT sector. We believe in the overall growth of candidates, combining technical expertise with professional development.
               </p>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                With specialized and certified faculty for each course, our training is 100% based on current industry requirements and real-time projects. We take pride in our 95% placement rate and strong connections with 800+ hiring companies, helping over 40,000 students achieve their career goals.
+                With specialized and certified faculty for each course, our training is 100% based on current industry requirements and real-time projects. We take pride in our 95% placement rate and strong connections with 800+ hiring companies, helping over 10,000 students achieve their career goals.
               </p>
             </motion.div>
 

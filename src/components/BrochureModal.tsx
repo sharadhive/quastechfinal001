@@ -2,7 +2,7 @@
 
 import { useState, FC, ChangeEvent, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download } from "lucide-react";
+import { X, Download, Calendar } from "lucide-react";
 
 // Step 1: Define the types for the component's props
 interface BrochureModalProps {
@@ -44,12 +44,12 @@ const BrochureModal: FC<BrochureModalProps> = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // 1. Create the WhatsApp message
-    const message = `Hello! I'm interested in the course. My details are:\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}`;
+    // 1. Create the WhatsApp message for demo booking
+    const message = `Hello! I would like to book a demo session. My details are:\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // 2. Trigger the brochure download
+    // 2. Trigger the brochure download (optional - still available)
     const link = document.createElement("a");
     link.href = brochureUrl;
     link.setAttribute("download", "Quastech-Brochure.pdf");
@@ -102,9 +102,12 @@ const BrochureModal: FC<BrochureModalProps> = ({
 
               {/* Right Side: Form */}
               <div className="p-8">
-                <div className="flex items-center gap-3 mb-5">
-                    <Download className="text-orange-600" size={28} />
-                    <h2 className="text-2xl font-bold text-gray-900">Download Brochure</h2>
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Calendar className="text-orange-600" size={28} />
+                    <h2 className="text-2xl font-bold text-gray-900">Book Your Demo</h2>
+                  </div>
+                  <p className="text-sm text-gray-600 ml-11">Schedule a free demo session and get course brochure</p>
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -121,9 +124,9 @@ const BrochureModal: FC<BrochureModalProps> = ({
                     <input type="email" id="email" value={formData.email} onChange={handleInputChange} className="mt-1 w-full border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="e.g. yourname@gmail.com" required />
                   </div>
 
-                  <button type="submit" className="w-full bg-orange-600 text-white font-bold py-3 rounded-md hover:bg-orange-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-orange-500/30">
-                    <Download size={20} />
-                    Download Brochure
+                  <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 rounded-md hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-orange-500/30">
+                    <Calendar size={20} />
+                    Submit
                   </button>
                 </form>
               </div>

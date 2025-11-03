@@ -70,22 +70,49 @@ const FooterTitle = ({ title }) => (
 );
 
 const Footer = () => {
-  const itTrainingLinks = [
-    { name: "Software Testing", href: "/software-testing-training" },
-    { name: "Manual Testing", href: "/manual-testing" },
-    { name: "Selenium Automation Testing", href: "/selenium-testing" },
-    { name: "ISTQB Certification", href: "/istqb-certification" },
-    { name: "Full Stack Java Development", href: "/full-stack-java-development" },
-    { name: "Full Stack Python Development", href: "/full-stack-python-development" },
-    { name: "Full Stack Web Development", href: "/web-development-course" },
-    { name: "Java Development", href: "/java-training" },
-    { name: "Python Development", href: "/python-training" },
-    { name: "React JS Development", href: "/react-course" },
-    { name: "Angular Development", href: "/angular-course" },
-    { name: "Web Designing", href: "/web-designing-training" },
+  // Certification Courses - Organized by Category
+  const certificationCourses = {
+    softwareTesting: [
+      { name: "Software Testing", href: "/software-testing-training" },
+      { name: "Manual Testing", href: "/manual-testing" },
+      { name: "Selenium Automation", href: "/selenium-testing" },
+      { name: "ISTQB Certification", href: "/istqb-certification" },
+    ],
+    fullstackDevelopment: [
+      { name: "Full Stack Java", href: "/full-stack-java-development" },
+      { name: "Full Stack Python", href: "/full-stack-python-development" },
+      { name: "Full Stack Web", href: "/web-development-course" },
+      { name: "Full Stack .NET", href: "/full-stack-dotnet-development" },
+    ],
+    softwareDevelopment: [
+      { name: "Java Development", href: "/java-training" },
+      { name: "Python Development", href: "/python-training" },
+      { name: "MEAN Stack", href: "/mean-stack-development" },
+      { name: "MERN Stack", href: "/mern-stack-development" },
+    ],
+    frontendDevelopment: [
+      { name: "React JS", href: "/react-course" },
+      { name: "Angular", href: "/angular-course" },
+      { name: "Web Designing", href: "/web-designing-training" },
+    ],
+    dataScience: [
+      { name: "Data Science & Analytics", href: "/python-data-science" },
+    ],
+    bigDataRPA: [
+      { name: "Big Data Engineering", href: "/big-data-engineering" },
+      { name: "RPA", href: "/rpa" },
+    ]
+  };
+
+  // Placement Courses with AI
+  const placementCoursesWithAI = [
+    { name: "Software Testing with AI", href: "/software-testing-training" },
+    { name: "Full Stack Java Development with AI", href: "/full-stack-java-development" },
+    { name: "Full Stack Python Development with AI", href: "/full-stack-python-development" },
+    { name: "Full Stack .NET Development with AI", href: "/full-stack-dotnet-development" },
+    { name: "Digital Marketing with AI", href: "/digital-marketing" },
     { name: "Data Science with AI", href: "/python-data-science" },
-    { name: "Big Data Engineering", href: "/big-data-engineering" },
-    { name: "RPA", href: "/rpa" }
+    { name: "Data Analytics with AI", href: "/data-analysis-visualization" },
   ];
 
   const dualDegreeLinks = [
@@ -162,122 +189,152 @@ const Footer = () => {
               </p>
             </div>
             
-            {/* Contact Info (From Code) */}
+            {/* Contact Info - Thane Branch */}
             <div className="space-y-3">
+              <h5 className="text-white font-semibold mb-3">Thane Branch</h5>
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-1" />
                 <span className="text-sm text-gray-300">
-                  123 Tech Street, IT Hub, Bangalore 560001
+                  Office No. 305, 3rd Floor, Mangalya Building,<br />
+                  Near Cadbury Junction, Pokhran Road No. 1,<br />
+                  Thane West, Maharashtra 400606
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-sm text-gray-300">+91 98765 43210</span>
+                <span className="text-sm text-gray-300">+91 84228 00381</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-sm text-gray-300">info@quastech.com</span>
+                <span className="text-sm text-gray-300">info@quastech.co.in</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Column 2: IT TRAINING & DUAL DEGREE (From Image) */}
+          {/* Column 2: CERTIFICATION COURSES */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <FooterTitle title="IT TRAINING" />
-            <ul className="space-y-3">
-              {itTrainingLinks.map((link) => (
+            <FooterTitle title="CERTIFICATION COURSES" />
+            
+            {/* Software Testing */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2 mt-4">Software Testing</h5>
+            <ul className="space-y-2">
+              {certificationCourses.softwareTesting.map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
 
-            <FooterTitle title="DUAL DEGREE" />
-            <ul className="space-y-3">
-              {dualDegreeLinks.map((link) => (
+            {/* Fullstack Development */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2 mt-4">Fullstack Development</h5>
+            <ul className="space-y-2">
+              {certificationCourses.fullstackDevelopment.map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* Software Development */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2 mt-4">Software Development</h5>
+            <ul className="space-y-2">
+              {certificationCourses.softwareDevelopment.map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
           </motion.div>
 
-          {/* Column 3: ONLINE & QUICK LINKS (From Image) */}
+          {/* Column 3: MORE CERTIFICATION COURSES & PLACEMENT WITH AI */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <FooterTitle title="ONLINE" />
-            <ul className="space-y-3">
-              {onlineLinks.map((link) => (
+            {/* Frontend Development */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2">Frontend Development</h5>
+            <ul className="space-y-2">
+              {certificationCourses.frontendDevelopment.map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
 
-            <FooterTitle title="QUICK LINKS" />
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
+            {/* Data Science & Analytics */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2 mt-4">Data Science & Analytics</h5>
+            <ul className="space-y-2">
+              {certificationCourses.dataScience.map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* Big Data & RPA */}
+            <h5 className="text-sm font-semibold text-blue-300 mb-2 mt-4">Big Data & RPA</h5>
+            <ul className="space-y-2">
+              {certificationCourses.bigDataRPA.map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* Placement Courses with AI */}
+            <FooterTitle title="PLACEMENT COURSES WITH AI" />
+            <ul className="space-y-2">
+              {placementCoursesWithAI.slice(0, 4).map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
           </motion.div>
 
-          {/* Column 4: NON IT TRAINING (From Image) */}
+          {/* Column 4: PLACEMENT COURSES WITH AI & MORE */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
+            {/* Remaining Placement Courses with AI */}
+            <ul className="space-y-2 mb-6">
+              {placementCoursesWithAI.slice(4).map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* Dual Degree */}
+            <FooterTitle title="DUAL DEGREE" />
+            <ul className="space-y-2">
+              {dualDegreeLinks.map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* Non-IT Training */}
             <FooterTitle title="NON IT TRAINING" />
-            <ul className="space-y-3">
-              {nonItTrainingLinks.map((link) => (
+            <ul className="space-y-2">
+              {nonItTrainingLinks.slice(0, 4).map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
           </motion.div>
           
-          {/* Column 5: Connect with us (From Image) & Socials (From Code) */}
+          {/* Column 5: QUICK LINKS & CONNECT */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <FooterTitle title="Connect with us" />
-            <form className="space-y-4 mb-6">
-              <div>
-                <label htmlFor="footer-mobile" className="sr-only">Mobile Number</label>
-                <Input
-                  id="footer-mobile"
-                  type="tel"
-                  placeholder="Enter 10-digit Mobile Number"
-                  className="bg-blue-900 border-blue-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
-                />
-              </div>
-              <div>
-                <label htmlFor="footer-name" className="sr-only">Full Name</label>
-                <Input
-                  id="footer-name"
-                  type="text"
-                  placeholder="Your Name"
-                  className="bg-blue-900 border-blue-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
-                />
-              </div>
-              <div>
-                <label htmlFor="footer-email" className="sr-only">Email</label>
-                <Input
-                  id="footer-email"
-                  type="email"
-                  placeholder="e.g. yourname@gmail.com"
-                  className="bg-blue-900 border-blue-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
-                />
-              </div>
-              <Button type="submit" className="w-full bg-white text-blue-950 hover:bg-gray-200">
-                Submit
-              </Button>
-            </form>
+            {/* Quick Links */}
+            <FooterTitle title="QUICK LINKS" />
+            <ul className="space-y-2 mb-6">
+              {quickLinks.map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
+
+            {/* More Non-IT Courses */}
+            <ul className="space-y-2 mb-6">
+              {nonItTrainingLinks.slice(4).map((link) => (
+                <FooterLink key={link.name} {...link} />
+              ))}
+            </ul>
             
-            {/* Social Links (From Code) */}
+            {/* Social Links */}
             <div>
               <h5 className="font-semibold mb-4 text-white">Follow Us</h5>
               <div className="flex gap-3">
