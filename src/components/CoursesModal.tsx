@@ -71,7 +71,7 @@ const CoursesModal = ({ isOpen, onClose }: CoursesModalProps) => {
   // Non-IT Courses
   const nonItCourses = [
     { name: "Digital Marketing Course", link: "/digital-marketing" },
-    { name: "Data Analysis & Visualization", link: "/data-analysis-visualization" },
+    { name: "Data Analytics & Visualization", link: "/data-analysis-visualization" },
     { name: "Graphic Designing", link: "/graphic-designing" },
     { name: "Web Graphic Designing", link: "/web-graphic-designing" },
     { name: "Management Information Systems", link: "/management-information-systems" },

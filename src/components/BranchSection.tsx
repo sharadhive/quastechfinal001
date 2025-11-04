@@ -11,10 +11,10 @@ const branchesData = [
     id: "Thane",
     name: "Thane Branch",
     address:
-      "201, Anant Laxmi Chambers, Dada Patil Marg, opp. Waman Hari Pethe Jewellers, Thane (W), Maharashtra 400602",
+      "Office No. 305, 3rd Floor, Mangalya Building, Near Cadbury Junction, Pokhran Road No. 1, Thane West, Maharashtra 400606",
     phone: "+91 8422800381",
     email: "info@quastech.in",
-    map: "https://g.page/Itvedant?share",
+    map: "https://www.google.com/search?q=quastech+thane",
     images: [
       "/images/branches/IMG20240104153417.jpg",
       "/images/branches/IMG20240104153434.jpg",
@@ -29,7 +29,7 @@ const branchesData = [
       "A/401, Court Chamber, Swami Vivekananda Rd, opp. Moksh Plaza, Borivali West, Maharashtra 400092",
     phone: "+91 8422800384/81",
     email: "info@quastech.in",
-    map: "https://g.page/Itvedant?share",
+    map: "https://www.google.com/search?q=quastech+borivali",
     images: [
       "/images/branches/IMG20240104153526.jpg",
       "/images/branches/IMG20240104153417.jpg",
@@ -44,7 +44,7 @@ const branchesData = [
       "Corporate Wing, Haware Fantasia Business Park, F-185(A, behind Inorbit Mall, Sector 30, Vashi, Navi Mumbai, Maharashtra 400703",
     phone: "+91 8422800384/81",
     email: "info@quastech.in",
-    map: "https://g.page/Itvedant?share",
+    map: "https://www.google.com/search?q=quastech+vashi",
     images: [
       "/images/branches/IMG20240104153526.jpg",
       "/images/branches/IMG20240104153417.jpg",
@@ -59,7 +59,7 @@ const branchesData = [
       "SCF 62, Third Floor, Phase 7, Sector 61, Sahibzada Ajit Singh Nagar, Punjab 160062",
     phone: "+91 72080 08461/62",
     email: "info@quastech.in",
-    map: "https://g.page/Itvedant?share",
+    map: "https://www.google.com/search?q=quastech+mohali",
     images: [
       "/public/images/branches/mohali/20240104_154224.jpg",
       "/public/images/branches/mohali/20240104_154237.jpg",
@@ -223,8 +223,9 @@ const BranchSection = () => {
                     <img
                       src={src}
                       alt={`${currentBranch?.name} ${idx + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-110"
                       loading="lazy"
+                      style={{ filter: 'brightness(1.2) contrast(1.05)' }}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white text-sm font-medium flex justify-between">
                       <span>{currentBranch?.name}</span>

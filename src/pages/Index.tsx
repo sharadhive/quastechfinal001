@@ -46,12 +46,12 @@ const Index = () => {
       <Footer />
         
         {/* Fixed Google Rating Element - Desktop */}
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-30 hidden lg:block" style={{ marginRight: '-60px' }}>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 2, duration: 0.8 }}
-            whileHover={{ scale: 1.05, x: -5 }}
+            whileHover={{ scale: 1.05, x: -15 }}
             className="cursor-pointer"
             onClick={() => window.open('https://www.google.com/search?q=quastech+reviews', '_blank')}
           >
@@ -59,8 +59,9 @@ const Index = () => {
               className="bg-blue-600 rounded-lg shadow-xl flex items-center justify-center"
               style={{ 
                 transform: 'rotate(-90deg)',
-                width: '160px',
-                height: '50px',
+                transformOrigin: 'center center',
+                width: '150px',
+                height: '46px',
                 padding: '5px'
               }}
             >
@@ -74,7 +75,7 @@ const Index = () => {
         </div>
 
         {/* Fixed Google Rating Element - Mobile & Tablet */}
-        <div className="fixed bottom-6 right-4 z-50 block lg:hidden">
+        <div className="fixed bottom-6 right-4 z-30 block lg:hidden">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,9 +87,9 @@ const Index = () => {
             <div 
               className="bg-blue-600 rounded-lg shadow-xl flex items-center justify-center"
               style={{ 
-                transform: 'rotate(90deg)',
-                width: '80px',
-                height: '160px',
+                transform: 'rotate(0deg)',
+                width: '140px',
+                height: '50px',
                 padding: '8px'
               }}
             >

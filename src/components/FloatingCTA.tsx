@@ -1,16 +1,103 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MessageCircle, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
+import { Phone, MessageCircle, X, Move } from "lucide-react";
 
 const FloatingCTA = () => {
-  const [isExpanded, setIsExpanded] = useState(false); // Start collapsed by default
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
+  
+  // Motion values for drag position
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const handleToggle = () => {
+  // Calculate drag constraints based on window size
+  useEffect(() => {
+    const updateConstraints = () => {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const iconSize = 80; // Approximate size of the expanded icon
+      
+      // Calculate constraints from the default position (left-4, top-1/2)
+      // left-4 = 16px from left, top-1/2 = 50% from top
+      const defaultLeft = 16;
+      const defaultTop = windowHeight / 2;
+      
+      setDragConstraints({
+        left: -defaultLeft, // Can go to left edge (0px)
+        right: windowWidth - defaultLeft - iconSize, // Can go to right edge
+        top: -defaultTop + iconSize / 2, // Can go to top edge
+        bottom: windowHeight - defaultTop - iconSize / 2 // Can go to bottom edge
+      });
+    };
+
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, []);
+
+  // Load saved position from localStorage on mount
+  useEffect(() => {
+    const savedPosition = localStorage.getItem('floatingCTAPosition');
+    if (savedPosition) {
+      try {
+        const { x: savedX, y: savedY } = JSON.parse(savedPosition);
+        x.set(savedX);
+        y.set(savedY);
+      } catch (error) {
+        console.error('Failed to load saved position:', error);
+        localStorage.removeItem('floatingCTAPosition');
+      }
+    }
+  }, [x, y]);
+
+  // Save position to localStorage when drag ends
+  const handleDragEnd = () => {
+    const position = {
+      x: x.get(),
+      y: y.get()
+    };
+    localStorage.setItem('floatingCTAPosition', JSON.stringify(position));
+    
+    // Delay resetting isDragging to prevent accidental clicks after drag
+    setTimeout(() => {
+      setIsDragging(false);
+    }, 100);
+  };
+
+  const handleToggle = (e: React.MouseEvent) => {
+    // Don't toggle if user was just dragging
+    if (isDragging) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
     setIsExpanded(!isExpanded);
   };
 
+  // Reset position to default on double-click
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    x.set(0);
+    y.set(0);
+    localStorage.removeItem('floatingCTAPosition');
+  };
+
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50">
+    <motion.div 
+      className={`fixed left-4 top-1/2 -translate-y-1/2 z-40 ${!isExpanded ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
+      style={{ x, y }}
+      drag={!isExpanded} // Only draggable when collapsed
+      dragMomentum={false}
+      dragElastic={0}
+      dragConstraints={dragConstraints}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={handleDragEnd}
+      onDoubleClick={handleDoubleClick}
+      whileDrag={{ scale: 1.05 }}
+      title="Drag to move • Double-click to reset position"
+    >
       <AnimatePresence mode="wait">
         {isExpanded ? (
           // Expanded State - Two Separate Buttons
@@ -100,7 +187,19 @@ const FloatingCTA = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+      
+      {/* Drag Indicator - Shows when not dragging and not expanded */}
+      {!isExpanded && !isDragging && (
+        <motion.div 
+          className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <Move className="w-3 h-3 text-white" />
+        </motion.div>
+      )}
+    </motion.div>
   );
 };
 

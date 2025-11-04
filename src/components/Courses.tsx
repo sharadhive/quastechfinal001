@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -14,10 +15,30 @@ import {
   ArrowRight,
   Download,
   MoreHorizontal,
-  Calendar
+  Calendar,
+  Briefcase,
+  Award,
+  Rocket,
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 const Courses = () => {
+  // Carousel features that rotate
+  const carouselFeatures = [
+    { text: "Running Projects", icon: Rocket, color: "from-purple-600 to-purple-700" },
+    { text: "Unlimited Interviews", icon: Briefcase, color: "from-blue-600 to-blue-700" },
+    { text: "Integrated Internship", icon: Award, color: "from-orange-500 to-orange-600" },
+    { text: "100% Job Assistance", icon: TrendingUp, color: "from-green-600 to-green-700" }
+  ];
+
+  const [currentFeature, setCurrentFeature] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
+  const [courseAutoPlay, setCourseAutoPlay] = useState(true);
+
+  // Define courses array first
   const courses = [
     {
       icon: Database,
@@ -129,9 +150,62 @@ const Courses = () => {
     }
   ];
 
+  // Auto-rotate carousel features
+  useEffect(() => {
+    if (!autoPlay) return;
+    
+    const interval = setInterval(() => {
+      setCurrentFeature((prev) => (prev + 1) % 4); // 4 features total
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [autoPlay]);
+
+  // Auto-rotate course cards every 4 seconds
+  useEffect(() => {
+    if (!courseAutoPlay) return;
+    
+    const interval = setInterval(() => {
+      setCurrentCourseIndex((prev) => (prev + 1) % courses.length);
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [courseAutoPlay, courses.length]);
+
+  // Navigate to previous feature
+  const handlePrevious = () => {
+    setAutoPlay(false);
+    setCurrentFeature((prev) => (prev - 1 + 4) % 4);
+    // Resume auto-play after 5 seconds of inactivity
+    setTimeout(() => setAutoPlay(true), 5000);
+  };
+
+  // Navigate to next feature
+  const handleNext = () => {
+    setAutoPlay(false);
+    setCurrentFeature((prev) => (prev + 1) % 4);
+    // Resume auto-play after 5 seconds of inactivity
+    setTimeout(() => setAutoPlay(true), 5000);
+  };
+
+  // Navigate courses left/right
+  const handleCoursePrevious = () => {
+    setCourseAutoPlay(false);
+    setCurrentCourseIndex((prev) => (prev - 1 + courses.length) % courses.length);
+    // Resume auto-play after 5 seconds of inactivity
+    setTimeout(() => setCourseAutoPlay(true), 5000);
+  };
+
+  const handleCourseNext = () => {
+    setCourseAutoPlay(false);
+    setCurrentCourseIndex((prev) => (prev + 1) % courses.length);
+    // Resume auto-play after 5 seconds of inactivity
+    setTimeout(() => setCourseAutoPlay(true), 5000);
+  };
+
   return (
-    <section id="courses" className="section-padding bg-gradient-mesh overflow-hidden">
-      <div className="container mx-auto container-padding overflow-hidden">
+    <section id="courses" className="section-padding bg-gradient-mesh overflow-hidden relative z-10">
+      <div className="container mx-auto container-padding overflow-hidden px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -156,19 +230,42 @@ const Courses = () => {
         </motion.div>
 
         {/* Courses Slider with Professional Cards */}
-        <div className="relative overflow-hidden">
-          {/* Mobile: Vertical Stack */}
-          <div className="block md:hidden space-y-3 sm:space-y-4 py-2 sm:py-4">
-          {courses.map((course, index) => (
-            <motion.div
-              key={course.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-              className="group"
+        <div className="relative overflow-visible py-4">
+          {/* Mobile: Single Card with Navigation */}
+          <div className="block md:hidden relative py-4">
+            {/* Navigation Arrows for Mobile */}
+            <motion.button
+              onClick={handleCoursePrevious}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute -left-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex items-center justify-center shadow-2xl transition-all"
             >
-                <Card className="w-full h-[350px] sm:h-[380px] overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 bg-white transform-gpu">
+              <ChevronLeft className="w-5 h-5" />
+            </motion.button>
+
+            <motion.button
+              onClick={handleCourseNext}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute -right-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex items-center justify-center shadow-2xl transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </motion.button>
+
+            {/* Display Single Course Card */}
+            <div className="flex justify-center px-14">
+              {(() => {
+                const course = courses[currentCourseIndex];
+                return (
+            <motion.div
+              key={`${course.title}-${currentCourseIndex}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+              className="group w-full max-w-md"
+            >
+                <Card className="w-full min-h-[500px] sm:min-h-[520px] overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 bg-white transform-gpu">
                   {/* Compact Header - Countdown and Seats Side by Side */}
                   {/* <div className="flex items-center justify-between p-2 sm:p-3 bg-gradient-to-r from-blue-50 to-orange-50">
                     <div className="flex items-center gap-2">
@@ -183,83 +280,116 @@ const Courses = () => {
                     </div>
                   </div> */}
 
-                  <CardContent className="p-2 sm:p-3 flex flex-col h-full">
+                  <CardContent className="p-4 sm:p-5 flex flex-col h-full">
                     {/* Main Content - Course Icon Left, Details Right */}
-                    <div className="flex gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="flex gap-4 mb-4 min-h-[85px] sm:min-h-[90px]">
                       {/* Course Icon - Left Side */}
                       <motion.div 
-                        className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-orange-500 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0"
+                        className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-orange-500 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <course.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                        <course.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                       </motion.div>
                       
                       {/* Course Details - Right Side */}
-                      <div className="flex-1">
-                        <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-1 leading-tight">
+                      <div className="flex-1 flex flex-col justify-center">
+                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 leading-snug min-h-[50px] flex items-center">
                           {course.title}
                         </h3>
-                        <div className="flex items-center gap-1 mb-1">
-                          <Clock className="w-3 h-3 text-institute-blue" />
-                          <span className="text-xs text-gray-600">{course.duration} {course.trainingType}</span>
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <Clock className="w-4 h-4 text-institute-blue flex-shrink-0" />
+                          <span className="text-sm text-gray-600 leading-tight">{course.duration}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-institute-orange" />
-                          <span className="text-xs text-gray-600">{course.batchTypes}</span>
+                        <div className="flex items-center gap-1.5">
+                          <Calendar className="w-4 h-4 text-institute-orange flex-shrink-0" />
+                          <span className="text-sm text-gray-600 leading-tight">{course.batchTypes}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Technology Logos - Consistent Size */}
-                    <div className="mb-2 sm:mb-3">
-                      <div className="flex justify-center gap-1.5 sm:gap-2 flex-wrap">
+                    {/* Technology Logos - All 6 in 1 Line */}
+                    <div className="mb-4">
+                      <div className="flex justify-center gap-2 flex-wrap">
                         {course.features.slice(0, 6).map((imgSrc, idx) => (
                           <motion.div 
                             key={idx} 
-                            className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center shadow-md border border-gray-200"
-                            whileHover={{ scale: 1.15, y: -3, rotate: 5 }}
+                            className="w-12 h-12 sm:w-13 sm:h-13 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0 overflow-hidden p-0"
+                            whileHover={{ scale: 1.1, y: -2, rotate: 3 }}
                             transition={{ duration: 0.3 }}
                           >
                             <img
                               src={imgSrc}
                               alt="Tech"
-                              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                              className="w-full h-full object-cover"
                             />
                           </motion.div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Feature Labels - Consistent Spacing */}
-                    <div className="mb-4">
-                      <div className="flex gap-1 justify-center">
-                        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-2 py-1 rounded-full text-xs font-bold">
-                          UNLIMITED INTERVIEWS
-                        </div>
-                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-2 py-1 rounded-full text-xs font-bold">
-                          INTEGRATED INTERNSHIP
-                        </div>
+                    {/* Feature Carousel - Animated with Controls */}
+                    <div className="mb-5 h-10 flex items-center justify-center gap-2">
+                      {/* Left Arrow */}
+                      <motion.button
+                        onClick={handlePrevious}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                      >
+                        <ChevronLeft className="w-4 h-4 text-gray-700" />
+                      </motion.button>
+
+                      {/* Feature Display */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          {(() => {
+                            const CurrentIcon = carouselFeatures[currentFeature].icon;
+                            return (
+                              <motion.div
+                                key={currentFeature}
+                                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                                transition={{ duration: 0.5 }}
+                                className={`bg-gradient-to-r ${carouselFeatures[currentFeature].color} text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg`}
+                              >
+                                <CurrentIcon className="w-4 h-4" />
+                                {carouselFeatures[currentFeature].text.toUpperCase()}
+                              </motion.div>
+                            );
+                          })()}
+                        </AnimatePresence>
                       </div>
+
+                      {/* Right Arrow */}
+                      <motion.button
+                        onClick={handleNext}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                      >
+                        <ChevronRight className="w-4 h-4 text-gray-700" />
+                      </motion.button>
                     </div>
 
                     {/* Bottom Buttons - Compact */}
-                    <div className="mt-auto space-y-2 pb-3">
-                      <div className="flex gap-1">
+                    <div className="mt-auto space-y-2.5 pb-4">
+                      <div className="flex gap-2.5">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 text-xs transition-all duration-300 font-semibold"
+                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 text-sm transition-all duration-300 font-semibold min-w-0 py-2.5"
                         >
-                          <Download className="w-3 h-3 mr-1" />
+                          <Download className="w-4 h-4 mr-1.5 flex-shrink-0" />
                           <span className="relative z-10">Download</span>
                         </Button>
                         <Button
                           size="sm"
-                          className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs"
+                          className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm min-w-0 py-2.5"
                         >
-                          <MoreHorizontal className="w-3 h-3 mr-1" />
-                          Know More
+                          <MoreHorizontal className="w-4 h-4 mr-1.5 flex-shrink-0" />
+                          <span>Know More</span>
                         </Button>
                       </div>
                       
@@ -275,14 +405,14 @@ const Courses = () => {
                         <Button
                           variant="default"
                           size="sm"
-                          className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 hover:from-blue-700 hover:via-purple-700 hover:to-blue-800 text-white font-semibold py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden group text-xs border-0"
+                          className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 hover:from-blue-700 hover:via-purple-700 hover:to-blue-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden group text-sm border-0"
                         >
                           <motion.span 
-                            className="relative z-10 flex items-center justify-center gap-1"
+                            className="relative z-10 flex items-center justify-center gap-2"
                             whileHover={{ x: 1 }}
                           >
                             <span>Enroll Now</span>
-                            <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                           </motion.span>
                         </Button>
                       </motion.div>
@@ -290,36 +420,50 @@ const Courses = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
+                );
+              })()}
+            </div>
           </div>
 
-          {/* Desktop: Horizontal Slider */}
-          <motion.div
-            className="hidden md:flex gap-3 md:gap-4 lg:gap-6 xl:gap-8 py-4"
-            animate={{ x: [0, -2000] }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                duration: 35,
-                ease: "linear",
-              },
-            }}
-            whileHover={{ animationPlayState: "paused" }}
-          >
-            {[...courses, ...courses].map((course, index) => (
+          {/* Desktop: Manual Navigation with Arrows */}
+          <div className="hidden md:block relative py-4">
+            {/* Navigation Arrows - Positioned Outside Cards with Higher Z-Index */}
+            <motion.button
+              onClick={handleCoursePrevious}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute -left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex items-center justify-center shadow-2xl transition-all"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+
+            <motion.button
+              onClick={handleCourseNext}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute -right-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white flex items-center justify-center shadow-2xl transition-all"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+
+            {/* Course Cards Display - Show 3 at a time */}
+            <div className="flex gap-4 lg:gap-6 xl:gap-8 justify-center px-20">
+              {[0, 1, 2].map((offset) => {
+                const courseIndex = (currentCourseIndex + offset) % courses.length;
+                const course = courses[courseIndex];
+                return (
               <motion.div
-                key={`${course.title}-${index}`}
-                className="flex-shrink-0 w-72 md:w-80"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                key={`${course.title}-${offset}`}
+                className="flex-shrink-0 w-72 md:w-80 group"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: offset * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group"
               >
-                <Card className="h-[400px] md:h-[420px] w-72 md:w-80 overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 bg-white transform-gpu">
-                  <CardContent className="p-4 flex flex-col h-full">
+                <Card className="min-h-[470px] md:min-h-[490px] w-full overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 bg-white transform-gpu">
+                  <CardContent className="p-5 flex flex-col h-full min-h-[470px] md:min-h-[490px]">
                     {/* Main Content - Course Icon Left, Details Right */}
-                    <div className="flex gap-4 mb-4">
+                    <div className="flex gap-4 mb-4 min-h-[100px]">
                       {/* Course Icon - Left Side */}
                       <motion.div 
                         className="w-16 h-16 bg-gradient-to-r from-blue-600 to-orange-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0"
@@ -330,70 +474,103 @@ const Courses = () => {
                       </motion.div>
                       
                       {/* Course Details - Right Side */}
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-800 mb-2 leading-tight">
+                      <div className="flex-1 flex flex-col justify-center">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 leading-snug min-h-[52px] flex items-center">
                           {course.title}
                         </h3>
-                        <div className="flex items-center gap-1 mb-1">
-                          <Clock className="w-3 h-3 text-institute-blue" />
-                          <span className="text-xs text-gray-600">{course.duration} {course.trainingType}</span>
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <Clock className="w-4 h-4 text-institute-blue flex-shrink-0" />
+                          <span className="text-sm text-gray-600 leading-tight">{course.duration}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-institute-orange" />
-                          <span className="text-xs text-gray-600">{course.batchTypes}</span>
+                        <div className="flex items-center gap-1.5">
+                          <Calendar className="w-4 h-4 text-institute-orange flex-shrink-0" />
+                          <span className="text-sm text-gray-600 leading-tight">{course.batchTypes}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Technology Logos - Consistent Size */}
-                    <div className="mb-4">
-                      <div className="flex justify-center gap-3 flex-wrap">
+                    {/* Technology Logos - All 6 in 1 Line */}
+                    <div className="mb-5">
+                      <div className="flex justify-center gap-2 flex-wrap">
                         {course.features.slice(0, 6).map((imgSrc, idx) => (
                           <motion.div 
                             key={idx} 
-                            className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md border border-gray-200"
-                            whileHover={{ scale: 1.15, y: -3, rotate: 5 }}
+                            className="w-11 h-11 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0 overflow-hidden p-0"
+                            whileHover={{ scale: 1.1, y: -2, rotate: 3 }}
                             transition={{ duration: 0.3 }}
                           >
                             <img
                               src={imgSrc}
                               alt="Tech"
-                              className="w-8 h-8 object-contain"
+                              className="w-full h-full object-cover"
                             />
                           </motion.div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Feature Labels - Consistent Spacing */}
-                    <div className="mb-5">
-                      <div className="flex gap-2 justify-center">
-                        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-full text-xs font-bold">
-                          UNLIMITED INTERVIEWS
-                        </div>
-                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                          INTEGRATED INTERNSHIP
-                        </div>
+                    {/* Feature Carousel - Animated with Controls */}
+                    <div className="mb-5 h-10 flex items-center justify-center gap-3">
+                      {/* Left Arrow */}
+                      <motion.button
+                        onClick={handlePrevious}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors shadow-md"
+                      >
+                        <ChevronLeft className="w-5 h-5 text-gray-700" />
+                      </motion.button>
+
+                      {/* Feature Display */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          {(() => {
+                            const CurrentIcon = carouselFeatures[currentFeature].icon;
+                            return (
+                              <motion.div
+                                key={currentFeature}
+                                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                                transition={{ duration: 0.5 }}
+                                className={`bg-gradient-to-r ${carouselFeatures[currentFeature].color} text-white px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg`}
+                              >
+                                <CurrentIcon className="w-5 h-5" />
+                                {carouselFeatures[currentFeature].text.toUpperCase()}
+                              </motion.div>
+                            );
+                          })()}
+                        </AnimatePresence>
                       </div>
+
+                      {/* Right Arrow */}
+                      <motion.button
+                        onClick={handleNext}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors shadow-md"
+                      >
+                        <ChevronRight className="w-5 h-5 text-gray-700" />
+                      </motion.button>
                     </div>
 
                     {/* Bottom Buttons - Compact */}
                     <div className="mt-auto space-y-2 pb-4">
-                      <div className="flex gap-1">
+                      <div className="flex gap-2">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 text-xs transition-all duration-300 font-semibold"
+                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 text-xs transition-all duration-300 font-semibold min-w-0"
                         >
-                          <Download className="w-3 h-3 mr-1" />
-                          <span className="relative z-10">Download</span>
+                          <Download className="w-3 h-3 mr-1 flex-shrink-0" />
+                          <span className="relative z-10 truncate">Download</span>
                         </Button>
                         <Button
                           size="sm"
-                          className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs"
+                          className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs min-w-0"
                         >
-                          <MoreHorizontal className="w-3 h-3 mr-1" />
-                          Know More
+                          <MoreHorizontal className="w-3 h-3 mr-1 flex-shrink-0" />
+                          <span className="truncate">Know More</span>
                         </Button>
                       </div>
                       
@@ -424,8 +601,10 @@ const Courses = () => {
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
-          </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* CTA */}
@@ -437,14 +616,14 @@ const Courses = () => {
         >
           <div className="bg-gradient-hero rounded-3xl p-12 lg:p-16 text-white shadow-xl">
             <h3 className="heading-md mb-6">
-              Transform Your Career with Expert Guidance
+              🚀 Transform Your Career with Expert Guidance
             </h3>
-            <p className="text-xl mb-10 text-white/90 max-w-2xl mx-auto">
-              Connect with our industry-expert career counselors for personalized course recommendations tailored to your goals. Get AI-powered career path analysis and unlock your potential with the perfect course match!
+            <p className="text-xl mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Connect with our <span className="font-semibold text-white">industry-expert career counselors</span> for personalized course recommendations tailored to your goals and unlock your potential with the perfect course match designed for success!
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button variant="glass" size="xl" className="text-lg font-bold">
-                Get Free Career Counseling →
+              <Button variant="glass" size="xl" className="text-lg font-bold hover:scale-105 transition-transform">
+                🎯 Get Free Career Counseling →
               </Button>
             </div>
           </div>

@@ -85,7 +85,10 @@ const Header = () => {
     { code: "hi", name: "हिंदी", flag: "🇮🇳" },
     { code: "mr", name: "मराठी", flag: "🇮🇳" },
     { code: "pa", name: "ਪੰਜਾਬੀ", flag: "🇮🇳" },
-    { code: "bh", name: "भोजपुरी", flag: "🇮🇳" },
+    { code: "bho", name: "भोजपुरी", flag: "🇮🇳" },
+    { code: "gu", name: "ગુજરાતી", flag: "🇮🇳" },
+    { code: "awa", name: "अवधी", flag: "🇮🇳" },
+    { code: "ur", name: "اردو", flag: "🇵🇰" },
     { code: "ar", name: "العربية", flag: "🇸🇦" },
     { code: "te", name: "తెలుగు", flag: "🇮🇳" },
     { code: "ta", name: "தமிழ்", flag: "🇮🇳" },
@@ -136,7 +139,7 @@ const Header = () => {
         new (window as any).google.translate.TranslateElement(
           {
             pageLanguage: 'en',
-            includedLanguages: 'en,hi,mr,pa,bh,ar,te,ta,kn,ml,fr,de,ru,es,pt,it,zh,ja,ko,nl',
+            includedLanguages: 'en,hi,mr,pa,bho,gu,awa,ur,ar,te,ta,kn,ml,fr,de,ru,es,pt,it,zh,ja,ko,nl',
             layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
@@ -430,7 +433,7 @@ const Header = () => {
       >
         <div className="container mx-auto px-3 sm:px-4 md:px-6">
           <div className="flex items-center justify-between h-18 sm:h-20 md:h-24 lg:h-28">
-            {/* Logo Section with Courses Button */}
+            {/* Logo Section with Courses & LMS Login Buttons */}
             <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
               {/* Main QUASTECH Logo */}
               <Link 
@@ -461,23 +464,36 @@ const Header = () => {
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline">Course's</span>
               </motion.button>
+
+              {/* LMS Login Button - Next to Courses */}
+              <motion.a
+                href="https://your-lms-url.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm sm:text-base"
+              >
+                <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">LMS Login</span>
+              </motion.a>
             </div>
 
 
             {/* Animated Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               {/* Language Selector */}
               <div ref={languageRef} className="relative">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300 flex items-center gap-1"
+                  className="p-1.5 sm:p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300 flex items-center gap-0.5 sm:gap-1"
                   title="Change Language"
                 >
-                  <Globe className="w-4 h-4 text-gray-600 dark-mode:text-gray-300" />
+                  <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-600 dark-mode:text-gray-300" />
                   <span className="text-xs font-semibold text-gray-600 dark-mode:text-gray-300">{currentLanguage.toUpperCase()}</span>
-                  <ChevronDown className={`w-3 h-3 text-gray-600 dark-mode:text-gray-300 transition-transform ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-2.5 h-2.5 sm:w-3 sm:h-3 text-gray-600 dark-mode:text-gray-300 transition-transform ${showLanguageDropdown ? 'rotate-180' : ''}`} />
                 </motion.button>
 
                 {/* Language Dropdown */}
@@ -518,7 +534,7 @@ const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300"
+                className="p-1.5 sm:p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300"
                 title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode (Eye Care)"}
               >
                 <motion.div
@@ -526,14 +542,14 @@ const Header = () => {
                   transition={{ duration: 0.3 }}
                 >
                   {isDarkMode ? (
-                    <Eye className="w-4 h-4 text-gray-600 dark-mode:text-gray-300" />
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-600 dark-mode:text-gray-300" />
                   ) : (
-                    <Moon className="w-4 h-4 text-gray-600 dark-mode:text-gray-300" />
+                    <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-600 dark-mode:text-gray-300" />
                   )}
                 </motion.div>
               </motion.button>
               
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="hidden lg:block">
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
@@ -543,30 +559,17 @@ const Header = () => {
                 </Button>
               </motion.div>
 
-              {/* Burger Menu Icon - Hidden when sidebar is open */}
-              {!isSidebarOpen && (
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsSidebarOpen(true)}
-                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300"
-                  title="Menu"
-                >
-                  <Menu className="w-5 h-5 text-gray-600 dark-mode:text-gray-300" />
-                </motion.button>
-              )}
+              {/* Burger Menu Icon - Always visible, simplified on mobile */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsSidebarOpen(true)}
+                className="p-1.5 sm:p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 transition-colors duration-300"
+                title="Menu"
+              >
+                <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark-mode:text-gray-300" />
+              </motion.button>
             </div>
-
-            {/* Animated Mobile Menu Button - Opens Sidebar Menu */}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-md hover:bg-primary/10 transition-all duration-300"
-              aria-label="Toggle menu"
-            >
-              <Menu className="w-6 h-6 text-gray-600" />
-            </motion.button>
           </div>
         </div>
 

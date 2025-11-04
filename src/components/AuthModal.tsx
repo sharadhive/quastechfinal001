@@ -44,7 +44,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
   const courses = [
     "Full Stack Development",
-    "Data Science & AI",
+    "Data Science & Analytics",
     "Digital Marketing",
     "Mobile App Development",
     "Artificial Intelligence",

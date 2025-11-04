@@ -202,11 +202,24 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-sm text-gray-300">+91 84228 00381</span>
+                <a 
+                  href="https://wa.me/918422800381" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2"
+                >
+                  +91 84228 00381
+                  <span className="text-xs text-green-400">(WhatsApp)</span>
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-sm text-gray-300">info@quastech.co.in</span>
+                <a 
+                  href="mailto:info@quastech.co.in"
+                  className="text-sm text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  info@quastech.co.in
+                </a>
               </div>
             </div>
           </motion.div>
@@ -290,14 +303,16 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {/* Remaining Placement Courses with AI */}
-            <ul className="space-y-2 mb-6">
+            <ul className="space-y-2 mb-4">
               {placementCoursesWithAI.slice(4).map((link) => (
                 <FooterLink key={link.name} {...link} />
               ))}
             </ul>
 
             {/* Dual Degree */}
-            <FooterTitle title="DUAL DEGREE" />
+            <h4 className="text-lg font-semibold mt-4 mb-3 text-white uppercase tracking-wider">
+              DUAL DEGREE
+            </h4>
             <ul className="space-y-2">
               {dualDegreeLinks.map((link) => (
                 <FooterLink key={link.name} {...link} />
@@ -305,7 +320,9 @@ const Footer = () => {
             </ul>
 
             {/* Non-IT Training */}
-            <FooterTitle title="NON IT TRAINING" />
+            <h4 className="text-lg font-semibold mt-4 mb-3 text-white uppercase tracking-wider">
+              NON IT TRAINING
+            </h4>
             <ul className="space-y-2">
               {nonItTrainingLinks.slice(0, 4).map((link) => (
                 <FooterLink key={link.name} {...link} />
@@ -363,18 +380,18 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-gray-400 text-center md:text-left">
-              © 2024 QUASTECH. All rights reserved. | ISO 9001:2015 Certified
+              © 2025 QUASTECH. All rights reserved. | ISO 9001:2015 Certified
             </div>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link to="/cookie-policy" className="text-gray-400 hover:text-white transition-colors">
                 Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

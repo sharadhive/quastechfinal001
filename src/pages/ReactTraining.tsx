@@ -76,10 +76,28 @@ const ReactTraining = () => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Format the WhatsApp message
+    const whatsappMessage = `*React JS Development - Enquiry*
+
+👤 *Name:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phone}
+💬 *Message:* ${formData.message || 'No additional message'}
+
+I'm interested in the React JS Development course. Please provide more details.`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappNumber = "918422800381";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+    
     toast({
-      title: "Enquiry Submitted!",
-      description: "We'll get back to you within 24 hours.",
+      title: "✅ WhatsApp Opened!",
+      description: "Your enquiry is ready in WhatsApp. Just click Send!",
     });
+    
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 

@@ -175,3 +175,5 @@ Apply the same responsive fixes to all 27 remaining course pages:
 
 
 
+
+

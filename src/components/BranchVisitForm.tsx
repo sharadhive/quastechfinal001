@@ -9,7 +9,7 @@ interface BranchVisitFormProps {
   onClose: () => void;
 }
 
-// Branch data from ContactPage
+// Branch data from ContactPage with Google Search URLs
 const branches = [
   {
     id: "Thane",
@@ -17,7 +17,7 @@ const branches = [
     address: "201, Anant Laxmi Chambers, Dada Patil Marg, opp. Waman Hari Pethe Jewellers, Thane (W), Maharashtra 400602",
     phone: "+91 8422800381",
     email: "info@quastech.in",
-    mapUrl: "https://www.google.com/maps/dir/?api=1&destination=19.19178,72.97089"
+    mapUrl: "https://www.google.com/search?q=quastech+thane"
   },
   {
     id: "Borivali",
@@ -25,7 +25,7 @@ const branches = [
     address: "A/401, Court Chamber, Swami Vivekananda Rd, opp. Moksh Plaza, Borivali West, Maharashtra 400092",
     phone: "+91 8422800384",
     email: "info@quastech.in",
-    mapUrl: "https://www.google.com/maps/dir/?api=1&destination=19.23083,72.85581"
+    mapUrl: "https://www.google.com/search?q=quastech+borivali"
   },
   {
     id: "Vashi",
@@ -33,7 +33,7 @@ const branches = [
     address: "Corporate Wing, Haware Fantasia Business Park, F-185(A, behind Inorbit Mall, Sector 30, Vashi, Navi Mumbai, Maharashtra 400703",
     phone: "+91 8422800381",
     email: "info@quastech.in",
-    mapUrl: "https://www.google.com/maps/dir/?api=1&destination=19.07618,73.00787"
+    mapUrl: "https://www.google.com/search?q=quastech+vashi"
   },
   {
     id: "Mohali",
@@ -41,7 +41,7 @@ const branches = [
     address: "SCF 62, Third Floor, Phase 7, Sector 61, Sahibzada Ajit Singh Nagar, Punjab 160062",
     phone: "+91 7208008461",
     email: "info@quastech.in",
-    mapUrl: "https://www.google.com/maps/dir/?api=1&destination=30.70332,76.69124"
+    mapUrl: "https://www.google.com/search?q=quastech+mohali"
   }
 ];
 

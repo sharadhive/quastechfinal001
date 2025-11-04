@@ -447,25 +447,40 @@ Please provide me with more information about this course.`;
                   >
                     <div className="text-center mb-8">
                       <p className="text-lg font-bold text-gray-700 mb-8">Certified & Recognized By</p>
-                      <div className="flex items-center justify-center gap-16">
+                      <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 flex-wrap">
+                        {/* Skill India Logo */}
                         <motion.div
-                          className="flex items-center gap-4"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <img
-                            src="/uploads/nsdeimg01.png"
-                            alt="NSDC Logo"
-                            className="h-24 w-auto opacity-95 hover:opacity-100 transition-all duration-300"
-                          />
-                        </motion.div>
-                        <motion.div
-                          className="flex items-center gap-4"
-                          whileHover={{ scale: 1.1 }}
+                          className="flex items-center justify-center bg-white rounded-lg px-4 py-3 shadow-md hover:shadow-lg transition-shadow h-20 sm:h-22 md:h-24 min-w-[140px] border border-gray-200"
+                          whileHover={{ scale: 1.05, y: -3 }}
                         >
                           <img
                             src="/uploads/skillindia--.jpg"
                             alt="Skill India Logo"
-                            className="h-24 w-auto opacity-95 hover:opacity-100 transition-all duration-300"
+                            className="h-full w-auto object-contain"
+                          />
+                        </motion.div>
+                        
+                        {/* NSDC Logo */}
+                        <motion.div
+                          className="flex items-center justify-center bg-white rounded-lg px-4 py-3 shadow-md hover:shadow-lg transition-shadow h-20 sm:h-22 md:h-24 min-w-[140px] border border-gray-200"
+                          whileHover={{ scale: 1.05, y: -3 }}
+                        >
+                          <img
+                            src="/uploads/nsdeimg01.jpg"
+                            alt="NSDC Logo"
+                            className="h-full w-auto object-contain"
+                          />
+                        </motion.div>
+                        
+                        {/* IBM Logo */}
+                        <motion.div
+                          className="flex items-center justify-center bg-white rounded-lg px-4 py-3 shadow-md hover:shadow-lg transition-shadow h-20 sm:h-22 md:h-24 min-w-[140px] border border-gray-200"
+                          whileHover={{ scale: 1.05, y: -3 }}
+                        >
+                          <img
+                            src="/uploads/ibm.png"
+                            alt="IBM Logo"
+                            className="h-full w-auto object-contain"
                           />
                         </motion.div>
                       </div>

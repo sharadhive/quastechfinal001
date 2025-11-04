@@ -281,7 +281,12 @@ const Reviews = () => {
                           Watch Video
                         </Button>
                       )}
-                      <Button variant="ghost" size="sm" className="ml-auto">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="ml-auto"
+                        onClick={() => setCurrentReview(reviews.indexOf(review))}
+                      >
                         Read More
                       </Button>
                     </div>

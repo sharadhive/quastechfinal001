@@ -98,12 +98,14 @@ const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string 
   </motion.div>
 );
 
-const Subtitle = ({ text }: { text: string }) => (
+const Subtitle = ({ text, showBadge = false }: { text: string, showBadge?: boolean }) => (
   <div className="text-center mb-10">
-    <div className="inline-flex items-center gap-2 px-6 py-2 mb-4 rounded-full bg-gradient-to-r from-blue-500 to-orange-400 shadow text-white text-sm font-bold uppercase">
-      <Building2 className="w-5 h-5 text-white drop-shadow" />
-      HIRING PARTNERS
-    </div>
+    {showBadge && (
+      <div className="inline-flex items-center gap-2 px-6 py-2 mb-4 rounded-full bg-gradient-to-r from-blue-500 to-orange-400 shadow text-white text-sm font-bold uppercase">
+        <Building2 className="w-5 h-5 text-white drop-shadow" />
+        HIRING PARTNERS
+      </div>
+    )}
     <h3 className="text-2xl md:text-3xl font-extrabold">
       <span className="bg-gradient-to-r from-[#6B5B95] via-[#9B6B8F] to-[#8B5A5A] bg-clip-text text-transparent">
         {text}
@@ -152,7 +154,7 @@ const Placement = () => {
 
           {/* 📊 Stats */}
           <div className="mb-8">
-            <Subtitle text="Placement Stats at a Glance" />
+            <Subtitle text="Quastech Stats at a Glance" />
             <Swiper
               loop
               autoplay={{ delay: 3000 }}
@@ -185,14 +187,7 @@ const Placement = () => {
 
           {/* 🤝 Hiring Partners - 3 Rows with Alternating Animations */}
           <div className="overflow-hidden bg-gradient-to-br from-blue-100 via-slate-100 to-orange-100 rounded-3xl py-12 px-4">
-            <div className="text-center mb-10">
-              <h3 className="text-2xl md:text-3xl font-extrabold">
-                <span className="bg-gradient-to-r from-[#6B5B95] via-[#9B6B8F] to-[#8B5A5A] bg-clip-text text-transparent">
-                  Associated with 800+ Hiring partners
-                </span>
-              </h3>
-              <div className="mt-2 h-1 w-24 mx-auto rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500" />
-            </div>
+            <Subtitle text="Associated with 800+ Hiring partners" showBadge={true} />
             
             {/* Row 1 - Slide Left */}
             <div className="relative overflow-hidden mb-6">

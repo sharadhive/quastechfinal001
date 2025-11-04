@@ -203,9 +203,32 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Your info has been sent! We'll get back to you soon.");
+    
+    // Format message for WhatsApp
+    const message = `
+🎓 *QUASTECH Enquiry Form*
+━━━━━━━━━━━━━━━━━━━
+📱 Mobile: ${formData.phone}
+👤 Name: ${formData.name}
+📧 Email: ${formData.email}
+━━━━━━━━━━━━━━━━━━━
+Please provide course details and guidance.
+    `.trim();
+    
+    const encodedMessage = encodeURIComponent(message);
+    
+    // QUASTECH WhatsApp number
+    const whatsappNumber = "918422800381";
+    
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
+    
+    // Reset form
     setFormData({ name: "", email: "", phone: "" });
   };
 
@@ -254,35 +277,47 @@ export default function Hero() {
                   </span>
                   <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
                     {/* NSDC Logo */}
-                    <motion.img
-                      src="/uploads/nsdeimg01.png"
-                      alt="NSDC Logo"
-                      className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+                    <motion.div
+                      className="flex items-center justify-center bg-white rounded-lg px-4 py-2 sm:px-5 sm:py-3 shadow-lg hover:shadow-xl transition-shadow"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5, duration: 0.4 }}
-                      whileHover={{ scale: 1.1 }}
-                    />
+                      whileHover={{ scale: 1.1, y: -2 }}
+                    >
+                      <img
+                        src="/uploads/nsdeimg01.jpg"
+                        alt="NSDC Logo"
+                        className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+                      />
+                    </motion.div>
                     {/* Skill India Logo */}
-                    <motion.img
-                      src="/uploads/skillindia--.jpg"
-                      alt="Skill India Logo"
-                      className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+                    <motion.div
+                      className="flex items-center justify-center bg-white rounded-lg px-4 py-2 sm:px-5 sm:py-3 shadow-lg hover:shadow-xl transition-shadow"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.6, duration: 0.4 }}
-                      whileHover={{ scale: 1.1 }}
-                    />
+                      whileHover={{ scale: 1.1, y: -2 }}
+                    >
+                      <img
+                        src="/uploads/skillindia--.jpg"
+                        alt="Skill India Logo"
+                        className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+                      />
+                    </motion.div>
                     {/* IBM Logo */}
-                    <motion.img
-                      src="/uploads/ibm.png"
-                      alt="IBM Logo"
-                      className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                    <motion.div
+                      className="flex items-center justify-center bg-white rounded-lg px-4 py-2 sm:px-5 sm:py-3 shadow-lg hover:shadow-xl transition-shadow"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.7, duration: 0.4 }}
-                      whileHover={{ scale: 1.1 }}
-                    />
+                      whileHover={{ scale: 1.1, y: -2 }}
+                    >
+                      <img
+                        src="/uploads/ibm.png"
+                        alt="IBM Logo"
+                        className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+                      />
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -507,7 +542,7 @@ export default function Hero() {
                   y: -5,
                   boxShadow: "0 30px 60px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2)"
                 }}
-                className="w-full max-w-sm sm:max-w-md bg-white/98 backdrop-blur-xl border border-white/40 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden relative group mx-2 sm:mx-0"
+                className="w-full max-w-sm sm:max-w-md bg-white/98 backdrop-blur-xl border border-white/40 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden relative group"
                 style={{
                   boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
                 }}
@@ -605,7 +640,7 @@ export default function Hero() {
       </div>
 
       {/* Company Logos at Bottom of Hero Section */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pb-8">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pb-8 -mt-4">
         <div className="max-w-7xl mx-auto">
           <CompanyLogos />
         </div>

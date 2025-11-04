@@ -16,7 +16,8 @@ const branchesData = [
     address: "201, Anant Laxmi Chambers, Dada Patil Marg, opp. Waman Hari Pethe Jewellers, Thane (W), Maharashtra 400602",
     phone: "+91 8422800381",
     email: "info@quastech.in",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.9488881234!2d72.97089!3d19.19178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDExJzMwLjQiTiA3MsKwNTgnMTUuMiJF!5e0!3m2!1sen!2sin!4v1234567890"
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.9488881234!2d72.97089!3d19.19178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDExJzMwLjQiTiA3MsKwNTgnMTUuMiJF!5e0!3m2!1sen!2sin!4v1234567890",
+    directionUrl: "https://www.google.com/search?q=quastech+thane"
   },
   {
     id: "Borivali",
@@ -24,7 +25,8 @@ const branchesData = [
     address: "A/401, Court Chamber, Swami Vivekananda Rd, opp. Moksh Plaza, Borivali West, Maharashtra 400092",
     phone: "+91 8422800384",
     email: "info@quastech.in",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.9488881234!2d72.85581!3d19.23083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDEzJzUxLjAiTiA3MsKwNTEnMjAuOSJF!5e0!3m2!1sen!2sin!4v1234567890"
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.9488881234!2d72.85581!3d19.23083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDEzJzUxLjAiTiA3MsKwNTEnMjAuOSJF!5e0!3m2!1sen!2sin!4v1234567890",
+    directionUrl: "https://www.google.com/search?q=quastech+borivali"
   },
   {
     id: "Vashi",
@@ -32,7 +34,8 @@ const branchesData = [
     address: "Corporate Wing, Haware Fantasia Business Park, F-185(A, behind Inorbit Mall, Sector 30, Vashi, Navi Mumbai, Maharashtra 400703",
     phone: "+91 8422800381",
     email: "info@quastech.in",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d73.00787!3d19.07618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzM0LjIiTiA3M8KwMDAnMjguMyJF!5e0!3m2!1sen!2sin!4v1234567890"
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d73.00787!3d19.07618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzM0LjIiTiA3M8KwMDAnMjguMyJF!5e0!3m2!1sen!2sin!4v1234567890",
+    directionUrl: "https://www.google.com/search?q=quastech+vashi"
   },
   {
     id: "Mohali",
@@ -40,7 +43,8 @@ const branchesData = [
     address: "SCF 62, Third Floor, Phase 7, Sector 61, Sahibzada Ajit Singh Nagar, Punjab 160062",
     phone: "+91 7208008461",
     email: "info@quastech.in",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.5!2d76.69124!3d30.70332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDQyJzEyLjAiTiA3NsKwNDEnMjguNSJF!5e0!3m2!1sen!2sin!4v1234567890"
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.5!2d76.69124!3d30.70332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDQyJzEyLjAiTiA3NsKwNDEnMjguNSJF!5e0!3m2!1sen!2sin!4v1234567890",
+    directionUrl: "https://www.google.com/search?q=quastech+mohali"
   }
 ];
 
@@ -76,8 +80,31 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for contacting us! We'll get back to you soon.");
+    
+    // Format the WhatsApp message with all contact form data
+    const whatsappMessage = `*Contact Form Submission*
+
+👤 *Name:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phone}
+📚 *Course Interest:* ${formData.course || 'Not specified'}
+💬 *Message:* ${formData.message || 'No additional message'}
+
+I would like to get in touch with you regarding the course.`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // QUASTECH WhatsApp number
+    const whatsappNumber = "918422800381";
+    
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
+    
+    // Reset form
     setFormData({ name: "", email: "", phone: "", course: "", message: "" });
   };
 
@@ -916,7 +943,7 @@ const ContactPage = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => window.open(currentBranch?.map, '_blank')}
+                    onClick={() => window.open(currentBranch?.directionUrl, '_blank')}
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <MapPin className="w-5 h-5" />
